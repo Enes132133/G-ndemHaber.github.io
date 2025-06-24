@@ -12,17 +12,18 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
 
   <style>
     body {
-      background-color: #fff;
-      color: #000;
+      background-color: #f8f9fa;
+      color: #212529;
       font-family: 'Segoe UI', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
     body.dark-mode {
-      background-color: #333;
-      color: #fff;
+      background-color: #343a40;
+      color: #f8f9fa;
     }
     button {
       padding: 10px 20px;
@@ -53,6 +54,7 @@
       border: none;
       border-radius: 10px;
       transition: transform 0.3s ease-in-out;
+      background-color: white;
     }
 
     .news-card:hover { transform: translateY(-10px); }
@@ -177,11 +179,11 @@
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+      <span class="visually-hidden">Önceki</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden">Sonraki</span>
     </button>
   </div>
 </section>
@@ -223,42 +225,50 @@
   async function fetchNews() {
     const container = document.getElementById('newsContainer');
     const horizontalContainer = document.getElementById('horizontalNewsContainer');
+    const sources = [
+      'https://api.rss2json.com/v1/api.json?rss_url=https://www.trthaber.com/manset_articles.rss',
+      'https://api.rss2json.com/v1/api.json?rss_url=https://www.ntv.com.tr/rss',
+      'https://api.rss2json.com/v1/api.json?rss_url=https://www.turkhaber.com/rss'
+    ];
+
     try {
-      const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.trthaber.com/manset_articles.rss');
-      const data = await res.json();
-
-      if (data.status !== 'ok') {
-        container.innerHTML = '<p>Haberler alınamadı.</p>';
-        return;
-      }
-
       container.innerHTML = '';
       horizontalContainer.innerHTML = '';
 
-      data.items.slice(0, 6).forEach(item => {
-        const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-        const image = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/400x200?text=Haber+Resmi';
+      for (const source of sources) {
+        const res = await fetch(source);
+        const data = await res.json();
 
-        // Dikey Slider (Haber Listesi)
-        const newsHTML = `
-          <div class="carousel-item">
-            <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
-            <div class="carousel-caption">
-              <h5>${item.title}</h5>
-              <p>${item.description.replace(/<[^>]*>?/gm, '').slice(0, 100)}...</p>
+        if (data.status !== 'ok') {
+          container.innerHTML += '<p>Haberler alınamadı.</p>';
+          continue;
+        }
+
+        data.items.slice(0, 10).forEach((item, index) => {
+          const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
+          const image = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/400x200?text=Haber+Resmi';
+
+          // Dikey Slider (Haber Listesi)
+          const newsHTML = `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+              <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
+              <div class="carousel-caption">
+                <h5>${item.title}</h5>
+                <p>${item.description.replace(/<[^>]*>?/gm, '').slice(0, 100)}...</p>
+              </div>
             </div>
-          </div>
-        `;
-        container.innerHTML += newsHTML;
+          `;
+          container.innerHTML += newsHTML;
 
-        // Kitap Şeklinde Kaydırma (Yatay Kaydırma)
-        const horizontalHTML = `
-          <div class="carousel-item">
-            <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
-          </div>
-        `;
-        horizontalContainer.innerHTML += horizontalHTML;
-      });
+          // Kitap Şeklinde Kaydırma (Yatay Kaydırma)
+          const horizontalHTML = `
+            <div class="carousel-item">
+              <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
+            </div>
+          `;
+          horizontalContainer.innerHTML += horizontalHTML;
+        });
+      }
     } catch (err) {
       console.error(err);
       container.innerHTML = '<p>Bağlantı hatası: Güncel haberler alınamadı.</p>';
