@@ -244,13 +244,13 @@
           continue;
         }
 
-        data.items.slice(0, 10).forEach((item, index) => {
+        data.items.slice(0, 10).forEach(item => {
           const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
           const image = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/400x200?text=Haber+Resmi';
 
           // Dikey Slider (Haber Listesi)
           const newsHTML = `
-            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+            <div class="carousel-item">
               <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
               <div class="carousel-caption">
                 <h5>${item.title}</h5>
