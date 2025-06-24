@@ -7,145 +7,120 @@
   <meta name="keywords" content="haberler, gündem, son dakika, Türkiye, ekonomi, spor, dünya, politika">
   <meta name="author" content="GündemLive">
   <title>GündemLive - Güncel Türkiye Haberleri</title>
-  <!-- Favicon -->
 
-  <button id="toggleBtn">Koyu Modu Aç</button>
+  <button id="toggleBtn" class="btn btn-light">Koyu Modu Aç</button>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     body {
-        background-color: #fff;
-        color: #000;
-        font-family: Arial, sans-serif;
-        transition: background-color 0.3s, color 0.3s;
+      background-color: #fff;
+      color: #000;
+      font-family: 'Segoe UI', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
     }
-
     body.dark-mode {
-        background-color: #333;
-        color: #fff;
+      background-color: #333;
+      color: #fff;
     }
-
     button {
-        padding: 10px 20px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        cursor: pointer;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
     }
 
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    .navbar {
-        background-color: #002b5b;
-    }
-
-    .navbar-brand, .nav-link {
-        color: white !important;
-        font-weight: 600;
-    }
+    .navbar { background-color: #003366; }
+    .navbar-brand, .nav-link { color: white !important; font-weight: 600; }
 
     .hero {
-        background: linear-gradient(to right, #003f88, #0074d9);
-        color: white;
-        padding: 60px 20px;
-        text-align: center;
+      background: linear-gradient(to right, #003f88, #0074d9);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 10px;
     }
 
-    .hero h1 {
-        font-size: 3rem;
-        font-weight: bold;
-    }
-
-    .news-section {
-        max-width: 1100px;
-        margin: 40px auto;
-        padding: 0 15px;
-    }
-
+    .hero h1 { font-size: 3rem; font-weight: bold; }
+    .news-section { max-width: 1100px; margin: 40px auto; padding: 0 15px; }
     .news-card {
-        margin-bottom: 30px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        border: none;
-        border-radius: 10px;
-        transition: transform 0.3s ease-in-out;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: none;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
     }
 
-    .news-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .news-card img {
-        max-height: 200px;
-        object-fit: cover;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .news-card h5 {
-        font-weight: bold;
-        margin-top: 10px;
-    }
+    .news-card:hover { transform: translateY(-10px); }
+    .news-card img { max-height: 200px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px; }
+    .news-card h5 { font-weight: bold; margin-top: 10px; }
 
     footer {
-        background: #001f3f;
-        color: white;
-        text-align: center;
-        padding: 20px;
-        margin-top: 60px;
+      background: #002b5b;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
     }
 
-    footer a {
-        color: #ffc107;
-    }
+    footer a { color: #ffc107; }
+    footer a:hover { text-decoration: none; }
 
-    footer a:hover {
-        text-decoration: none;
-    }
-
-    .social-icons {
-        margin-top: 10px;
-    }
-
+    .social-icons { margin-top: 10px; }
     .social-icons a {
-        color: white;
-        font-size: 1.5rem;
-        margin: 0 10px;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 10px;
     }
 
-    /* Dikey Slider */
+    /* Modern Carousel Styles */
     .carousel-inner {
-        height: 500px;
+      height: 400px;
     }
 
     .carousel-item {
-        height: 500px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #f4f4f4;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
     }
 
     .carousel-item img {
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
     }
 
     .carousel-caption {
-        position: absolute;
-        bottom: 20px;
-        left: 10px;
-        right: 10px;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        color: white;
+      position: absolute;
+      bottom: 20px;
+      left: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      color: white;
+    }
+
+    /* Horizontal Scrollable Carousel */
+    .horizontal-carousel {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 20px 0;
+    }
+
+    .horizontal-carousel .carousel-item {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 200px;
+      width: 300px;
     }
   </style>
 </head>
@@ -174,11 +149,10 @@
   <p>En güncel haberler, resimli ve açıklamalı olarak her gün burada!</p>
 </header>
 
-<!-- Dikey Slider (Carousel) -->
+<!-- Dikey Slider (Saniyeli) -->
 <section id="haberler" class="news-section">
   <div id="newsCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
     <div class="carousel-inner" id="newsContainer">
-      <!-- Dinamik Haberler Buraya Eklenecek -->
       <p>Haberler yükleniyor...</p>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
@@ -189,6 +163,13 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+  </div>
+</section>
+
+<!-- Kitap Şeklinde Kaydırma -->
+<section class="horizontal-carousel">
+  <div class="carousel-inner" id="horizontalNewsContainer">
+    <!-- Burada kitap şeklinde kaydırılacak haberler olacak -->
   </div>
 </section>
 
@@ -210,12 +191,13 @@
 <script>
   const btn = document.getElementById('toggleBtn');
   btn.onclick = () => {
-      document.body.classList.toggle('dark-mode');
-      btn.textContent = document.body.classList.contains('dark-mode') ? 'Aydınlık Modu Aç' : 'Koyu Modu Aç';
+    document.body.classList.toggle('dark-mode');
+    btn.textContent = document.body.classList.contains('dark-mode') ? 'Aydınlık Modu Aç' : 'Koyu Modu Aç';
   };
 
   async function fetchNews() {
     const container = document.getElementById('newsContainer');
+    const horizontalContainer = document.getElementById('horizontalNewsContainer');
     try {
       const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.trthaber.com/manset_articles.rss');
       const data = await res.json();
@@ -226,21 +208,31 @@
       }
 
       container.innerHTML = '';
+      horizontalContainer.innerHTML = '';
 
-      data.items.slice(0, 6).forEach((item, index) => {
+      data.items.slice(0, 6).forEach(item => {
         const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
         const image = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/400x200?text=Haber+Resmi';
+
+        // Dikey Slider (Haber Listesi)
         const newsHTML = `
-          <div class="carousel-item ${index === 0 ? 'active' : ''}">
-            <img src="${image}" class="d-block w-100" alt="${item.title}">
-            <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-item">
+            <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
+            <div class="carousel-caption">
               <h5>${item.title}</h5>
-              <p>${item.description.replace(/<[^>]*>?/gm, '').slice(0, 150)}...</p>
-              <a href="${item.link}" class="btn btn-primary btn-sm" target="_blank">Haberi Oku</a>
+              <p>${item.description.replace(/<[^>]*>?/gm, '').slice(0, 100)}...</p>
             </div>
           </div>
         `;
         container.innerHTML += newsHTML;
+
+        // Kitap Şeklinde Kaydırma (Yatay Kaydırma)
+        const horizontalHTML = `
+          <div class="carousel-item">
+            <img src="${image}" class="d-block w-100" alt="${item.title}" loading="lazy">
+          </div>
+        `;
+        horizontalContainer.innerHTML += horizontalHTML;
       });
     } catch (err) {
       console.error(err);
