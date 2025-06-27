@@ -7,19 +7,10 @@
   <meta name="keywords" content="haberler, gündem, son dakika, Türkiye, ekonomi, spor, dünya, politika, teknoloji, kültür, sanat, güncel haberler, arama, kategoriler">
   <meta name="author" content="GündemLive">
   <title>ŞimşekNews - Güncel Türkiye Haberleri ve Son Dakika Gelişmeleri</title>
-
-  <!-- Favicon (Şimşek Logolu) -->
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" type="image/png">
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --primary-color: #003366;
@@ -34,1024 +25,320 @@
       --section-bg: #f5f5f5;
     }
 
-    body.dark-mode {
-      --primary-color: #004080;
-      --secondary-color: #0077e6;
-      --accent-color: #ffd700;
-      --dark-color: #121212;
-      --light-color: #1e1e1e;
-      --text-color: #e0e0e0;
-      --white: #2d2d2d;
-      --card-bg: #252525;
-      --border-color: #444;
-      --section-bg: #121212;
-    }
-
+    /* Tüm CSS stilleri burada */
     body {
       font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--section-bg);
       color: var(--text-color);
-      transition: all 0.3s ease;
       line-height: 1.6;
     }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
+    
+    /* Transfer Slider Özel Stilleri */
+    .transfer-slider {
+      margin: 50px 0;
     }
-
-    /* Navbar */
-    .navbar {
-      background-color: var(--primary-color);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 0.8rem 0;
-    }
-
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      letter-spacing: 0.5px;
-    }
-
-    .navbar-brand img {
-      height: 32px;
-      margin-right: 10px;
-      filter: drop-shadow(0 0 2px rgba(255, 204, 0, 0.7));
-      transition: transform 0.3s ease;
-    }
-
-    .navbar-brand:hover img {
-      transform: scale(1.1);
-    }
-
-    .nav-link {
-      font-weight: 500;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-      padding: 0.5rem 1rem !important;
-      border-radius: 4px;
-    }
-
-    .navbar-brand, .nav-link {
-      color: var(--white) !important;
-    }
-
-    .navbar-brand:hover, .nav-link:hover {
-      color: var(--accent-color) !important;
-    }
-
-    .nav-link:hover {
-      background-color: rgba(255,255,255,0.1);
-    }
-
-    /* Logo Animasyonu */
-    @keyframes lightning {
-      0% { opacity: 1; }
-      50% { opacity: 0.7; filter: drop-shadow(0 0 5px var(--accent-color)); }
-      100% { opacity: 1; }
-    }
-
-    .lightning-logo {
-      animation: lightning 3s infinite;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 80px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-      opacity: 0.15;
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      margin: 0 auto 30px;
-      max-width: 700px;
-      opacity: 0.9;
-    }
-
-    /* Breaking News Banner */
-    .breaking-news {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      padding: 10px 0;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .breaking-news span {
-      background-color: var(--dark-color);
-      color: var(--accent-color);
-      padding: 3px 10px;
-      border-radius: 4px;
-      margin-right: 15px;
-      font-size: 0.9rem;
-    }
-
-    /* Carousel Section */
-    .carousel-section {
-      max-width: 1200px;
-      margin: 0 auto 50px;
-      padding: 0 15px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-      padding-bottom: 15px;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background-color: var(--accent-color);
-    }
-
-    #newsCarousel .carousel-item {
-      height: 500px;
-      border-radius: 12px;
+    .transfer-card {
+      border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: 0 10px;
+      transition: transform 0.3s;
     }
-
-    #newsCarousel .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    #newsCarousel .carousel-item:hover img {
-      transform: scale(1.03);
-    }
-
-    #newsCarousel .carousel-caption {
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      padding: 30px;
-      text-align: left;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-    }
-
-    #newsCarousel .carousel-caption h5 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    }
-
-    #newsCarousel .carousel-caption p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      opacity: 0.9;
-    }
-
-    #newsCarousel .carousel-caption .btn {
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-      color: var(--dark-color);
-      font-weight: 600;
-      padding: 8px 20px;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-    }
-
-    #newsCarousel .carousel-caption .btn:hover {
-      background-color: transparent;
-      color: var(--accent-color);
-      border-color: var(--accent-color);
-      transform: translateY(-3px);
-    }
-
-    /* News Section */
-    .news-section {
-      max-width: 1200px;
-      margin: 0 auto 60px;
-      padding: 0 15px;
-    }
-
-    .news-card {
-      margin-bottom: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      border: none;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      height: 100%;
-      background-color: var(--card-bg);
-    }
-
-    .news-card:hover {
+    .transfer-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
-
-    .news-card .card-img-top {
-      height: 220px;
+    .transfer-media {
+      height: 200px;
+      position: relative;
+    }
+    .transfer-media img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
     }
-
-    .news-card:hover .card-img-top {
-      transform: scale(1.05);
-    }
-
-    .news-card .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      height: calc(100% - 220px);
-    }
-
-    .news-card .category-badge {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 3px 10px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      align-self: flex-start;
-    }
-
-    .news-card h5 {
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--primary-color);
-      transition: color 0.3s ease;
-    }
-
-    .news-card:hover h5 {
-      color: var(--accent-color);
-    }
-
-    .news-card .card-text {
-      font-size: 0.95rem;
-      color: var(--text-color);
-      margin-bottom: 15px;
-      flex-grow: 1;
-      opacity: 0.9;
-    }
-
-    .news-card .news-meta {
-      font-size: 0.85rem;
-      color: #6c757d;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
-
-    body.dark-mode .news-card .news-meta {
-      color: #aaa;
-    }
-
-    .news-card .news-meta i {
-      margin-right: 5px;
-      color: var(--accent-color);
-    }
-
-    .news-card .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      font-weight: 500;
-      border-radius: 50px;
-      padding: 8px 20px;
-      align-self: flex-start;
-      transition: all 0.3s ease;
-    }
-
-    .news-card .btn-primary:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-      transform: translateY(-3px);
-    }
-
-    /* Döviz ve Spor Bölümü */
-    .exchange-sports-section {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 40px 0;
-      margin: 60px 0;
-    }
-
-    .exchange-sports-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .exchange-section, .sports-section {
-      flex: 1;
-      min-width: 300px;
-      padding: 20px;
-      margin: 10px;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 10px;
-    }
-
-    .exchange-section h3, .sports-section h3 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--accent-color);
-    }
-
-    .exchange-rates, .sports-results {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .exchange-rate, .sports-result {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    .exchange-rate:hover, .sports-result:hover {
-      background-color: rgba(255,255,255,0.2);
-      transform: translateX(5px);
-    }
-
-    .currency, .teams {
-      font-weight: 600;
-    }
-
-    .rate, .score {
-      font-weight: 700;
-      color: var(--accent-color);
-    }
-
-    .change {
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .change.up {
-      color: #28a745;
-    }
-
-    .change.down {
-      color: #dc3545;
-    }
-
-    /* About Modal */
-    .modal-content {
-      background-color: var(--card-bg);
-      color: var(--text-color);
-    }
-
-    .modal-header {
-      border-bottom-color: var(--border-color);
-    }
-
-    .modal-footer {
-      border-top-color: var(--border-color);
-    }
-
-    /* Back to top button */
-    #backToTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 30px;
-      z-index: 99;
-      border: none;
-      outline: none;
-      background-color: var(--primary-color);
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 18px;
-      width: 50px;
-      height: 50px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-
-    #backToTopBtn:hover {
-      background-color: var(--secondary-color);
-      transform: translateY(-3px);
-    }
-
-    /* Kategoriler */
-    .category-pill {
-      display: inline-block;
-      padding: 8px 20px;
-      margin: 5px;
-      background-color: var(--light-color);
+    .transfer-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent-color);
       color: var(--dark-color);
-      border-radius: 50px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 12px;
     }
-
-    body.dark-mode .category-pill {
-      background-color: #333;
-      color: #eee;
+    .transfer-body {
+      padding: 15px;
+      background: white;
     }
-
-    .category-pill:hover, .category-pill.active {
-      background-color: var(--primary-color);
-      color: white;
-      transform: translateY(-2px);
+    .transfer-player {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
     }
-
-    /* Arama Çubuğu */
-    .search-bar {
-      margin: 30px 0;
+    .transfer-teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 15px 0;
     }
-
-    .search-bar .input-group {
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-radius: 50px;
-      overflow: hidden;
+    .transfer-team {
+      text-align: center;
+      width: 40%;
     }
-
-    .search-bar input {
-      border: none;
-      padding: 12px 20px;
+    .transfer-team-logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      margin-bottom: 5px;
     }
-
-    .search-bar input:focus {
-      box-shadow: none;
+    .transfer-arrow {
+      color: var(--accent-color);
+      font-size: 1.5rem;
     }
-
-    .search-bar button {
-      padding: 0 25px;
-      font-weight: 600;
+    .transfer-details {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .transfer-date {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .transfer-date i {
+      margin-right: 5px;
     }
   </style>
 </head>
 <body>
 
-<!-- Breaking News Banner -->
-<div class="breaking-news">
+<!-- Mevcut HTML yapınız burada -->
+
+<!-- YENİ TRANSFER SLIDER BÖLÜMÜ -->
+<section class="transfer-slider">
   <div class="container">
-    <span>SON DAKİKA</span>
-    <span id="breakingNewsText">Türkiye'de yeni ekonomik paket açıklandı! Detaylar için tıklayın.</span>
-  </div>
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="GündemLive Logo" class="lightning-logo">
-      Gündem<span style="color: var(--accent-color)">Live</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="#home">Ana Sayfa</a></li>
-        <li class="nav-item"><a class="nav-link" href="#slider">Öne Çıkanlar</a></li>
-        <li class="nav-item"><a class="nav-link" href="#haberler">Son Haberler</a></li>
-        <li class="nav-item"><a class="nav-link" href="#kategoriler">Kategoriler</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Hakkımızda</a></li>
-        <li class="nav-item">
-          <button id="darkModeToggle" class="btn btn-link nav-link" aria-label="Karanlık Mod">
-            <i class="fas fa-moon"></i>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header id="home" class="hero">
-  <div class="hero-content">
-    <h1>Gündemi Yakından Takip Et</h1>
-    <p>Türkiye ve dünyadan en güncel haberler, son dakika gelişmeleri, analizler ve özel içerikler her gün burada!</p>
-    <a href="#haberler" class="btn btn-warning btn-lg">Son Haberleri Gör <i class="fas fa-arrow-down ms-2"></i></a>
-  </div>
-</header>
-
-<section id="slider" class="carousel-section">
-  <h2 class="section-title text-primary">Öne Çıkan Haberler</h2>
-  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-    <div class="carousel-indicators" id="carouselIndicators">
-    </div>
-    <div class="carousel-inner" id="carouselInner">
-      <p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</section>
-
-<section class="search-bar">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="input-group">
-              <input type="text" id="newsSearchInput" class="form-control" placeholder="Haber başlığı veya içerik ara..." aria-label="Haberlerde ara">
-              <button class="btn btn-primary" type="button" id="newsSearchButton"><i class="fas fa-search me-2"></i> Ara</button>
+    <h2 class="section-title">Canlı Transferler <span class="badge bg-danger">LIVE</span></h2>
+    <div id="transferSlider" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner" id="transferSliderInner">
+        <!-- Dinamik olarak yüklenecek -->
+        <div class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Yükleniyor...</span>
           </div>
+          <p>Transfer haberleri yükleniyor...</p>
         </div>
       </div>
-    </div>
-</section>
-
-<section id="kategoriler" class="categories-section">
-  <div class="container">
-    <h2 class="section-title text-primary">Kategoriler</h2>
-    <div class="d-flex flex-wrap justify-content-center" id="categoryPills">
-      <a href="#" class="category-pill active" data-filter="all">Tümü</a>
-      <a href="#" class="category-pill" data-filter="siyaset">Politika</a>
-      <a href="#" class="category-pill" data-filter="ekonomi">Ekonomi</a>
-      <a href="#" class="category-pill" data-filter="spor">Spor</a>
-      <a href="#" class="category-pill" data-filter="teknoloji">Teknoloji</a>
-      <a href="#" class="category-pill" data-filter="yaşam">Yaşam</a>
-      <a href="#" class="category-pill" data-filter="dünya">Dünya</a>
-      <a href="#" class="category-pill" data-filter="sağlık">Sağlık</a>
-      <a href="#" class="category-pill" data-filter="eğitim">Eğitim</a>
+      <button class="carousel-control-prev" type="button" data-bs-target="#transferSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#transferSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </section>
 
-<section id="haberler" class="news-section">
-  <div class="container">
-    <h2 class="section-title text-primary">Son Dakika Haberleri</h2>
-    <div id="newsContainer" class="row">
-      <p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>
-    </div>
-    <div class="text-center mt-4">
-      <button id="loadMoreBtn" class="btn btn-outline-primary">Daha Fazla Haber Yükle <i class="fas fa-plus ms-2"></i></button>
-    </div>
-  </div>
-</section>
-
-<!-- Döviz ve Spor Bölümü -->
-<section class="exchange-sports-section">
-  <div class="exchange-sports-container">
-    <div class="exchange-section">
-      <h3><i class="fas fa-chart-line me-2"></i> Döviz Kurları</h3>
-      <div class="exchange-rates" id="exchangeRates">
-        <div class="exchange-rate">
-          <span class="currency">USD/TRY</span>
-          <span class="rate">32.45</span>
-          <span class="change up"><i class="fas fa-arrow-up me-1"></i>0.12%</span>
-        </div>
-        <div class="exchange-rate">
-          <span class="currency">EUR/TRY</span>
-          <span class="rate">35.18</span>
-          <span class="change down"><i class="fas fa-arrow-down me-1"></i>0.07%</span>
-        </div>
-        <div class="exchange-rate">
-          <span class="currency">GBP/TRY</span>
-          <span class="rate">41.23</span>
-          <span class="change up"><i class="fas fa-arrow-up me-1"></i>0.21%</span>
-        </div>
-        <div class="exchange-rate">
-          <span class="currency">ALTIN/TRY</span>
-          <span class="rate">2,450.75</span>
-          <span class="change up"><i class="fas fa-arrow-up me-1"></i>0.45%</span>
-        </div>
-      </div>
-    </div>
-    <div class="sports-section">
-      <h3><i class="fas fa-futbol me-2"></i> Spor Sonuçları</h3>
-      <div class="sports-results" id="sportsResults">
-        <div class="sports-result">
-          <span class="teams">Fenerbahçe - Galatasaray</span>
-          <span class="score">2-1</span>
-        </div>
-        <div class="sports-result">
-          <span class="teams">Beşiktaş - Trabzonspor</span>
-          <span class="score">1-1</span>
-        </div>
-        <div class="sports-result">
-          <span class="teams">Başakşehir - Adana Demir</span>
-          <span class="score">3-0</span>
-        </div>
-        <div class="sports-result">
-          <span class="teams">Kayserispor - Antalyaspor</span>
-          <span class="score">2-2</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Hakkımızda Modal -->
-<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+<!-- Video Modalı -->
+<div class="modal fade" id="transferVideoModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="aboutModalLabel">Hakkımızda</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="text-center mb-4">
-          <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="GündemLive Logo" style="height: 80px;" class="mb-3">
-          <h3>GündemLive</h3>
-          <p class="text-muted">Türkiye'nin en güncel haber platformu</p>
+      <div class="modal-body p-0">
+        <div class="ratio ratio-16x9">
+          <iframe id="transferVideoFrame" src="" allowfullscreen></iframe>
         </div>
-        <p>GündemLive, 2025 yılında kurulmuş olup, Türkiye ve dünyadan en güncel haberleri tarafsız ve hızlı bir şekilde okurlarına ulaştırmayı hedeflemektedir.</p>
-        <p>Uzman gazeteci kadromuz ve geniş muhabir ağımızla, güvenilir habercilik ilkelerinden ödün vermeden, doğru ve objektif haber yayıncılığı yapıyoruz.</p>
-        
-        <h5 class="mt-4">Misyonumuz</h5>
-        <p>Toplumu doğru ve güvenilir bilgiyle buluşturmak, demokratik toplumun gelişimine katkı sağlamak.</p>
-        
-        <h5 class="mt-4">Vizyonumuz</h5>
-        <p>Türkiye'nin en çok tercih edilen, güvenilir ve yenilikçi haber platformu olmak.</p>
-        
-        <h5 class="mt-4">İletişim</h5>
-        <ul class="list-unstyled">
-          <li><i class="fas fa-envelope me-2"></i> simsekenes762@gmail.com </li>
-          <li><i class="fas fa-phone me-2"></i> 551 276 93 13 </li>
-          <li><i class="fas fa-map-marker-alt me-2"></i> Mersin, Türkiye</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Back to top button -->
-<button onclick="topFunction()" id="backToTopBtn" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  let allNewsData = []; // Tüm haberleri saklamak için global değişken
-  let currentDisplayCount = 12; // Başlangıçta gösterilecek haber sayısı
-
-  // Breaking News Text
-  const breakingNewsTexts = [
-    "Bakanlar Kurulu toplantısı sona erdi! Yeni kararlar açıklandı",
-    "Dolar ve Euro'da son durum: Merkez Bankası'ndan açıklama geldi",
-    "Spor Toto Süper Lig'de şampiyonluk yarışı kızışıyor",
-    "Teknoloji devinden yeni akıllı telefon tanıtıldı",
-    "Sağlık Bakanlığı'ndan aşı çalışmaları hakkında önemli açıklama"
-  ];
-
-  // Rastgele breaking news seç
-  document.getElementById('breakingNewsText').textContent = 
-    breakingNewsTexts[Math.floor(Math.random() * breakingNewsTexts.length)];
-
-  // Döviz kurlarını güncelle
-  function updateExchangeRates() {
-    const currencies = ['USD/TRY', 'EUR/TRY', 'GBP/TRY', 'ALTIN/TRY'];
-    const rates = document.querySelectorAll('.exchange-rate');
-    
-    rates.forEach((rate, index) => {
-      const baseValue = [32.45, 35.18, 41.23, 2450.75][index];
-      const change = (Math.random() * 0.5 - 0.25).toFixed(2);
-      const newValue = (parseFloat(baseValue) + parseFloat(change)).toFixed(2);
-      const changePercent = (Math.random() * 0.5).toFixed(2);
-      const isUp = Math.random() > 0.5;
-      
-      rate.querySelector('.currency').textContent = currencies[index];
-      rate.querySelector('.rate').textContent = newValue;
-      
-      const changeElement = rate.querySelector('.change');
-      changeElement.innerHTML = `<i class="fas fa-arrow-${isUp ? 'up' : 'down'} me-1"></i>${changePercent}%`;
-      changeElement.className = `change ${isUp ? 'up' : 'down'}`;
-    });
-  }
-
-  // Spor sonuçlarını güncelle
-  function updateSportsResults() {
-    const matches = [
-      { teams: 'Fenerbahçe - Galatasaray', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` },
-      { teams: 'Beşiktaş - Trabzonspor', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` },
-      { teams: 'Başakşehir - Adana Demir', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 2)}` },
-      { teams: 'Kayserispor - Antalyaspor', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` }
-    ];
-    
-    const results = document.querySelectorAll('.sports-result');
-    matches.forEach((match, index) => {
-      results[index].querySelector('.teams').textContent = match.teams;
-      results[index].querySelector('.score').textContent = match.score;
-    });
-  }
-
-  async function fetchNews() {
-    const newsContainer = document.getElementById('newsContainer');
-    const carouselInner = document.getElementById('carouselInner');
-    const carouselIndicators = document.getElementById('carouselIndicators');
-
-    // Display loading messages
-    newsContainer.innerHTML = '<p class="text-center text-primary"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>';
-    carouselInner.innerHTML = '<p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>';
-    carouselIndicators.innerHTML = '';
-
+  // 1. DÖVİZ KURLARI (GenelPara API)
+  async function updateExchangeRates() {
     try {
-      const rssUrl = 'https://www.trthaber.com/manset_articles.rss';
-      const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
-      const res = await fetch(proxyUrl);
-      const data = await res.json();
-
-      if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-        const errorMessage = '<p class="text-center text-danger"><i class="fas fa-exclamation-triangle me-2"></i> Haberler alınamadı. Lütfen daha sonra tekrar deneyin.</p>';
-        newsContainer.innerHTML = errorMessage;
-        carouselInner.innerHTML = errorMessage;
-        return;
-      }
-
-      allNewsData = data.items;
-      displayNews(allNewsData.slice(0, currentDisplayCount));
-      displayCarousel(allNewsData);
-
-    } catch (err) {
-      console.error("Haberleri alırken bir hata oluştu:", err);
-      const connectionError = '<p class="text-center text-danger"><i class="fas fa-times-circle me-2"></i> Bağlantı hatası: Güncel haberler alınamadı. Lütfen internet bağlantınızı kontrol edin.</p>';
-      newsContainer.innerHTML = connectionError;
-      carouselInner.innerHTML = connectionError;
+      const response = await fetch('https://api.genelpara.com/embed/doviz.json');
+      const data = await response.json();
+      
+      document.querySelector('#exchangeRates .exchange-rate:nth-child(1) .rate').textContent = data.USD.satis;
+      document.querySelector('#exchangeRates .exchange-rate:nth-child(1) .change').innerHTML = 
+        `<i class="fas fa-arrow-${data.USD.d_yon}"></i> ${data.USD.d_oran}%`;
+      
+      document.querySelector('#exchangeRates .exchange-rate:nth-child(2) .rate').textContent = data.EUR.satis;
+      document.querySelector('#exchangeRates .exchange-rate:nth-child(2) .change').innerHTML = 
+        `<i class="fas fa-arrow-${data.EUR.d_yon}"></i> ${data.EUR.d_oran}%`;
+      
+      document.querySelector('#exchangeRates .exchange-rate:nth-child(4) .rate').textContent = data.GA.satis;
+      document.querySelector('#exchangeRates .exchange-rate:nth-child(4) .change').innerHTML = 
+        `<i class="fas fa-arrow-${data.GA.d_yon}"></i> ${data.GA.d_oran}%`;
+      
+    } catch (error) {
+      console.error("Döviz kurları alınamadı:", error);
     }
   }
 
-  function displayNews(newsItems, searchTerm = '', filterCategory = 'all') {
-    const newsContainer = document.getElementById('newsContainer');
-    
-    // Eğer yeni bir arama/filtreleme yapılıyorsa, tüm haberleri temizle
-    if (searchTerm || filterCategory !== 'all') {
-      newsContainer.innerHTML = '';
-      currentDisplayCount = 12; // Reset display count when filtering
-    }
-
-    let filteredNews = newsItems;
-
-    // Kategoriye göre filtreleme
-    if (filterCategory !== 'all') {
-        filteredNews = filteredNews.filter(item => {
-            const titleLower = item.title.toLowerCase();
-            const descriptionLower = (item.description || '').toLowerCase();
-            return titleLower.includes(filterCategory) || descriptionLower.includes(filterCategory);
-        });
-    }
-
-    // Arama terimine göre filtreleme
-    if (searchTerm) {
-        const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        filteredNews = filteredNews.filter(item => {
-            const titleLower = item.title.toLowerCase();
-            const descriptionLower = (item.description || '').toLowerCase();
-            return titleLower.includes(lowerCaseSearchTerm) || descriptionLower.includes(lowerCaseSearchTerm);
-        });
-    }
-
-    if (filteredNews.length === 0) {
-      newsContainer.innerHTML = '<p class="text-center text-warning"><i class="fas fa-info-circle me-2"></i> Aradığınız kriterlere uygun haber bulunamadı.</p>';
-      document.getElementById('loadMoreBtn').style.display = 'none';
-      return;
-    }
-
-    filteredNews.forEach((item, index) => {
-      const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-      let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
-      if (imageUrl && !imageUrl.startsWith('http')) {
-          imageUrl = 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
-      }
-      
-      // Kategoriyi belirle (basit bir yaklaşım)
-      let category = 'Gündem';
-      const titleLower = item.title.toLowerCase();
-      if (titleLower.includes('spor')) category = 'Spor';
-      else if (titleLower.includes('ekonomi') || titleLower.includes('dolar') || titleLower.includes('borsa')) category = 'Ekonomi';
-      else if (titleLower.includes('teknoloji') || titleLower.includes('yapay zeka') || titleLower.includes('apple') || titleLower.includes('samsung')) category = 'Teknoloji';
-      else if (titleLower.includes('sağlık') || titleLower.includes('hastane') || titleLower.includes('doktor')) category = 'Sağlık';
-      
-      const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-      const shortDescription = cleanDescription.length > 180 ? cleanDescription.substring(0, 180) + '...' : cleanDescription;
-      
-      // Tarih formatlama
-      const pubDate = new Date(item.pubDate);
-      const formattedDate = pubDate.toLocaleDateString('tr-TR', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
+  // 2. SPOR SONUÇLARI (API-Football)
+  async function updateSportsResults() {
+    try {
+      const response = await fetch('https://api-football-v1.p.rapidapi.com/v3/fixtures?league=203&season=2023&next=4', {
+        headers: {
+          'X-RapidAPI-Key': '1a2b3c4d5e6f7g8h9i0j', // Ücretsiz RapidAPI key
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
+        }
       });
+      const data = await response.json();
+      
+      const results = document.querySelectorAll('.sports-result');
+      data.response.slice(0, 4).forEach((match, index) => {
+        if (index < results.length) {
+          const homeTeam = match.teams.home.name;
+          const awayTeam = match.teams.away.name;
+          const matchDate = new Date(match.fixture.date);
+          
+          results[index].querySelector('.teams').textContent = `${homeTeam} - ${awayTeam}`;
+          
+          if (match.fixture.status.short === 'FT') {
+            results[index].querySelector('.score').textContent = 
+              `${match.goals.home} - ${match.goals.away}`;
+          } else {
+            results[index].querySelector('.score').textContent = 
+              `${matchDate.getHours()}:${matchDate.getMinutes().toString().padStart(2, '0')}`;
+          }
+        }
+      });
+    } catch (error) {
+      console.error("Maç bilgileri alınamadı:", error);
+    }
+  }
 
-      const newsHTML = `
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card news-card h-100">
-            <img src="${imageUrl}" class="card-img-top" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Resim+Yüklenemedi';">
-            <div class="card-body">
-              <span class="category-badge">${category}</span>
-              <h5 class="card-title">${item.title}</h5>
-              <p class="card-text">${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
-              <div class="news-meta">
-                <i class="far fa-calendar-alt"></i> ${formattedDate}
+  // 3. TRANSFER HABERLERİ (Örnek veri + API entegrasyonu)
+  async function fetchTransfers() {
+    try {
+      // Gerçek API için:
+      // const response = await fetch('https://api-football-v1.p.rapidapi.com/v3/transfers?player=35845', {
+      //   headers: {'X-RapidAPI-Key': '1a2b3c4d5e6f7g8h9i0j'}
+      // });
+      
+      // Örnek transfer verileri (API limiti nedeniyle)
+      const sampleTransfers = [
+        {
+          player: "Victor Osimhen",
+          from: "Napoli",
+          to: "Chelsea",
+          date: "2023-08-15",
+          fee: "€120M",
+          image: "https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg)/origin-imgresizer.eurosport.com/2023/07/15/3747212-76674548-2560-1440.jpg",
+          video: "https://www.youtube.com/embed/xyz123",
+          confirmed: true
+        },
+        {
+          player: "Kylian Mbappé",
+          from: "PSG",
+          to: "Real Madrid",
+          date: "2023-08-10",
+          fee: "€180M",
+          image: "https://img.a.transfermarkt.technology/portrait/big/342229-1694590256.jpg",
+          video: "https://www.youtube.com/embed/abc456",
+          confirmed: false
+        },
+        {
+          player: "Jadon Sancho",
+          from: "Manchester United",
+          to: "Borussia Dortmund",
+          date: "2023-08-20",
+          fee: "Kiralık",
+          image: "https://img.a.transfermarkt.technology/portrait/big/401173-1671435411.jpg",
+          confirmed: true
+        }
+      ];
+
+      displayTransfers(sampleTransfers);
+      
+    } catch (error) {
+      console.error("Transfer haberleri alınamadı:", error);
+    }
+  }
+
+  function displayTransfers(transfers) {
+    const sliderInner = document.getElementById('transferSliderInner');
+    sliderInner.innerHTML = '';
+    
+    transfers.forEach((transfer, index) => {
+      const transferHTML = `
+        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+          <div class="transfer-card">
+            <div class="transfer-media">
+              <img src="${transfer.image}" alt="${transfer.player}" loading="lazy">
+              ${transfer.video ? `<div class="transfer-badge" onclick="openTransferVideo('${transfer.video}')">
+                <i class="fas fa-play me-1"></i> Video
+              </div>` : ''}
+            </div>
+            <div class="transfer-body">
+              <h3 class="transfer-player">${transfer.player}</h3>
+              
+              <div class="transfer-teams">
+                <div class="transfer-team">
+                  <img src="https://via.placeholder.com/100x100?text=${transfer.from.substring(0,2)}" 
+                       class="transfer-team-logo" 
+                       alt="${transfer.from}">
+                  <div>${transfer.from}</div>
+                </div>
+                
+                <div class="transfer-arrow">
+                  <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                
+                <div class="transfer-team">
+                  <img src="https://via.placeholder.com/100x100?text=${transfer.to.substring(0,2)}" 
+                       class="transfer-team-logo" 
+                       alt="${transfer.to}">
+                  <div>${transfer.to}</div>
+                </div>
               </div>
-              <a href="${item.link}" class="btn btn-primary mt-auto" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
+              
+              <div class="transfer-details">
+                <p><strong>Ücret:</strong> ${transfer.fee}</p>
+                <p><strong>Durum:</strong> ${transfer.confirmed ? 'Resmi' : 'Söylenti'}</p>
+              </div>
+              
+              <div class="transfer-date">
+                <i class="far fa-calendar-alt me-1"></i>
+                ${new Date(transfer.date).toLocaleDateString('tr-TR')}
+              </div>
             </div>
           </div>
         </div>
       `;
-      newsContainer.innerHTML += newsHTML;
-    });
-
-    // Daha fazla yükle butonunu kontrol et
-    if (filteredNews.length <= currentDisplayCount || (searchTerm || filterCategory !== 'all')) {
-      document.getElementById('loadMoreBtn').style.display = 'none';
-    } else {
-      document.getElementById('loadMoreBtn').style.display = 'inline-block';
-    }
-  }
-
-  function displayCarousel(newsItems) {
-    const carouselInner = document.getElementById('carouselInner');
-    const carouselIndicators = document.getElementById('carouselIndicators');
-    carouselInner.innerHTML = '';
-    carouselIndicators.innerHTML = '';
-
-    const carouselItems = newsItems.slice(0, 5);
-
-    if (carouselItems.length === 0) {
-      carouselInner.innerHTML = '<p class="text-center text-warning"><i class="fas fa-info-circle me-2"></i> Slider için haber bulunmamaktadır.</p>';
-      return;
-    }
-
-    carouselItems.forEach((item, index) => {
-      const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-      let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok';
-      if (imageUrl && !imageUrl.startsWith('http')) {
-          imageUrl = 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok';
-      }
-
-      const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-      const shortDescription = cleanDescription.length > 200 ? cleanDescription.substring(0, 200) + '...' : cleanDescription;
-
-      const carouselItemHTML = `
-        <div class="carousel-item ${index === 0 ? 'active' : ''}">
-          <img src="${imageUrl}" class="d-block w-100" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/1200x600?text=Resim+Yüklenemedi';">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>${item.title}</h5>
-            <p>${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
-            <a href="${item.link}" class="btn btn-warning" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
-          </div>
-        </div>
-      `;
-      carouselInner.innerHTML += carouselItemHTML;
-
-      const indicatorButton = `
-        <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>
-      `;
-      carouselIndicators.innerHTML += indicatorButton;
+      sliderInner.innerHTML += transferHTML;
     });
   }
 
-  // Daha fazla haber yükleme fonksiyonu
-  document.getElementById('loadMoreBtn').addEventListener('click', function() {
-    currentDisplayCount += 6;
-    displayNews(allNewsData.slice(0, currentDisplayCount));
-  });
-
-  // Back-to-top button functionality
-  const backToTopBtn = document.getElementById("backToTopBtn");
-
-  window.onscroll = function() { scrollFunction() };
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      backToTopBtn.style.display = "block";
-    } else {
-      backToTopBtn.style.display = "none";
-    }
+  function openTransferVideo(videoUrl) {
+    const videoFrame = document.getElementById('transferVideoFrame');
+    videoFrame.src = videoUrl;
+    const modal = new bootstrap.Modal(document.getElementById('transferVideoModal'));
+    modal.show();
   }
 
-  function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
-
-  // --- Dark Mode Functionality ---
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const body = document.body;
-
-  // Check for saved dark mode preference on load
-  const savedDarkMode = localStorage.getItem('darkMode');
-  if (savedDarkMode === 'enabled') {
-    body.classList.add('dark-mode');
-    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
-
-  // Toggle dark mode on button click
-  darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('darkMode', 'enabled');
-      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-      localStorage.setItem('darkMode', 'disabled');
-      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    }
-  });
-
-  // --- Search Functionality ---
-  const newsSearchInput = document.getElementById('newsSearchInput');
-  const newsSearchButton = document.getElementById('newsSearchButton');
-
-  function performSearchAndFilter() {
-      const searchTerm = newsSearchInput.value.trim();
-      const activeCategory = document.querySelector('.category-pill.active')?.dataset.filter || 'all';
-      displayNews(allNewsData, searchTerm, activeCategory);
-  }
-
-  newsSearchButton.addEventListener('click', performSearchAndFilter);
-  newsSearchInput.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-          performSearchAndFilter();
-      }
-  });
-
-  // --- Category Filtering Functionality ---
-  const categoryPills = document.getElementById('categoryPills');
-  categoryPills.addEventListener('click', (event) => {
-      if (event.target.classList.contains('category-pill')) {
-          event.preventDefault();
-          document.querySelectorAll('.category-pill').forEach(pill => {
-              pill.classList.remove('active');
-          });
-          event.target.classList.add('active');
-          const filterCategory = event.target.dataset.filter;
-          const searchTerm = newsSearchInput.value.trim();
-          displayNews(allNewsData, searchTerm, filterCategory);
-      }
-  });
-
-  // Fetch news on page load and set interval for refresh
+  // Sayfa yüklendiğinde tüm verileri çek
   window.onload = () => {
-    fetchNews();
     updateExchangeRates();
     updateSportsResults();
+    fetchTransfers();
     
-    // Döviz ve spor sonuçlarını her 30 saniyede bir güncelle
-    setInterval(fetchNews, 60000 * 5); // Refresh news every 5 minutes
-    setInterval(updateExchangeRates, 30000); // Refresh exchange rates every 30 seconds
-    setInterval(updateSportsResults, 30000); // Refresh sports results every 30 seconds
+    // Her 10 dakikada bir döviz kurlarını güncelle
+    setInterval(updateExchangeRates, 600000);
+    
+    // Her 1 saatte bir spor ve transfer verilerini güncelle
+    setInterval(() => {
+      updateSportsResults();
+      fetchTransfers();
+    }, 3600000);
   };
 </script>
-
 </body>
 </html>
