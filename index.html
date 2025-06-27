@@ -4,151 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GündemLive - Hızlı Haber Portalı</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965879.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Önemli meta etiketleri -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content="#1a3e72">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" type="image/png">
+  
+  <!-- CSS'leri inline yaparak render engelini kaldırıyoruz -->
   <style>
+    /* Minimal CSS */
     :root {
-      --primary-color: #1a3e72;
-      --accent-color: #ff5722;
-      --card-bg: #fff;
+      --primary: #1a3e72;
+      --accent: #ff5722;
+      --white: #fff;
+      --light: #f5f5f5;
+      --dark: #333;
     }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.5;
     }
     .navbar {
-      background-color: var(--primary-color);
+      background: var(--primary);
+      color: var(--white);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
     }
     .news-card {
-      transition: transform 0.2s;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .news-card:hover {
-      transform: translateY(-5px);
+    .news-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
-    /* Diğer stil tanımlamaları... */
+    .news-content {
+      padding: 1rem;
+    }
+    .loading {
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    /* Mobil uyumlu stiller */
+    @media (max-width: 768px) {
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- Navbar ve diğer HTML elemanları... -->
+<!-- Basit navbar -->
+<nav class="navbar">
+  <div style="display: flex; align-items: center;">
+    <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="Logo" width="32" height="32">
+    <h1 style="margin: 0 0 0 1rem; font-size: 1.5rem;">GündemLive</h1>
+  </div>
+</nav>
 
+<!-- Haberlerin yükleneceği alan -->
+<main>
+  <div id="newsContainer" class="news-grid">
+    <div class="loading">
+      <p>Haberler yükleniyor...</p>
+    </div>
+  </div>
+</main>
+
+<!-- Sayfa sonu -->
+<footer style="background: var(--primary); color: var(--white); padding: 2rem; text-align: center;">
+  <p>© 2023 GündemLive - Tüm hakları saklıdır</p>
+  <p>İletişim: <a href="mailto:simsekenes762@gmail.com" style="color: var(--accent);">simsekenes762@gmail.com</a></p>
+</footer>
+
+<!-- JavaScript'i sayfa sonuna ekliyoruz -->
 <script>
-  // Önbellek mekanizması
-  const NEWS_CACHE_KEY = 'gundemlive_news_cache';
-  const CACHE_EXPIRE_TIME = 5 * 60 * 1000; // 5 dakika
+  // Haber kaynakları
+  const NEWS_SOURCES = [
+    'https://www.trthaber.com/manset_articles.rss',
+    'https://www.ntv.com.tr/gundem.rss',
+    'https://www.hurriyet.com.tr/rss/gundem'
+  ];
 
-  async function fetchNews() {
-    // Önce önbelleği kontrol et
-    const cachedNews = checkCache();
-    if (cachedNews) {
-      displayNews(cachedNews);
-      return;
-    }
-
-    showLoader();
+  // Haberleri yükleme fonksiyonu
+  async function loadNews() {
+    const container = document.getElementById('newsContainer');
     
     try {
-      const sources = [
-        'https://www.trthaber.com/manset_articles.rss',
-        'https://www.ntv.com.tr/gundem.rss'
-      ];
-      
-      // Paralel olarak birden fazla kaynaktan veri çek
-      const promises = sources.map(src => 
-        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(src)}`)
-          .then(res => res.json())
-          .catch(() => null)
+      // Paralel olarak tüm kaynaklardan veri çek
+      const responses = await Promise.all(
+        NEWS_SOURCES.map(source => 
+          fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(source)}`)
+            .then(res => res.json())
+            .catch(e => null)
+        )
       );
       
-      const results = await Promise.all(promises);
-      const validResults = results.filter(r => r?.status === 'ok');
-      
-      if (validResults.length === 0) throw new Error('No valid sources');
-      
-      // Haberleri birleştir ve sırala
-      let allNews = [];
-      validResults.forEach(result => {
-        allNews = [...allNews, ...result.items];
-      });
+      // Geçerli yanıtları filtrele
+      const validNews = responses
+        .filter(res => res?.status === 'ok')
+        .flatMap(res => res.items);
       
       // Tarihe göre sırala ve eski haberleri filtrele
-      allNews.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
-      const recentNews = allNews.filter(item => 
-        new Date(item.pubDate) > new Date(Date.now() - 24*60*60*1000)
-      );
+      const recentNews = validNews
+        .sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate))
+        .filter(item => new Date(item.pubDate) > new Date(Date.now() - 24*60*60*1000));
       
-      // Önbelleğe kaydet
-      saveToCache(recentNews);
-      displayNews(recentNews);
+      // Haberleri göster
+      displayNews(recentNews.slice(0, 15)); // İlk 15 haber
       
     } catch (error) {
-      console.error("Haber yükleme hatası:", error);
-      showError();
-    } finally {
-      hideLoader();
+      container.innerHTML = `
+        <div class="loading">
+          <p>Haberler yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>
+        </div>
+      `;
+      console.error('Haber yükleme hatası:', error);
     }
   }
 
-  function checkCache() {
-    const cachedData = localStorage.getItem(NEWS_CACHE_KEY);
-    if (!cachedData) return null;
-    
-    const { data, timestamp } = JSON.parse(cachedData);
-    if (Date.now() - timestamp > CACHE_EXPIRE_TIME) return null;
-    
-    return data;
-  }
-
-  function saveToCache(data) {
-    const cacheData = {
-      data,
-      timestamp: Date.now()
-    };
-    localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify(cacheData));
-  }
-
+  // Haberleri görüntüleme fonksiyonu
   function displayNews(newsItems) {
     const container = document.getElementById('newsContainer');
-    container.innerHTML = '';
     
-    // İlk 12 haber için basit kart oluştur
-    newsItems.slice(0,12).forEach(item => {
-      const imgUrl = extractImageUrl(item.description);
-      const card = `
-        <div class="col-md-4 mb-4">
-          <div class="card news-card h-100">
-            <img src="${imgUrl}" class="card-img-top" loading="lazy" 
-                 onerror="this.src='https://via.placeholder.com/300x200?text=Resim+Yok'">
-            <div class="card-body">
-              <h5 class="card-title">${item.title}</h5>
-              <p class="card-text">${truncateText(item.description, 100)}</p>
-              <a href="${item.link}" class="btn btn-primary">Haberi Oku</a>
-            </div>
-          </div>
+    if (!newsItems || newsItems.length === 0) {
+      container.innerHTML = `
+        <div class="loading">
+          <p>Gösterilecek haber bulunamadı.</p>
         </div>
       `;
-      container.innerHTML += card;
-    });
+      return;
+    }
+    
+    container.innerHTML = newsItems.map(item => `
+      <article class="news-card">
+        <img src="${getImageUrl(item.description)}" 
+             class="news-img" 
+             loading="lazy" 
+             alt="${item.title}"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5IiBmb250LWZhbWlseT0iQXJpYWwiPkhhYmVyIFJlc21pPC90ZXh0Pjwvc3ZnPg=='">
+        <div class="news-content">
+          <h3 style="margin-top: 0;">${item.title}</h3>
+          <p>${cleanText(item.description, 120)}</p>
+          <a href="${item.link}" style="
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+          ">Haberi Oku</a>
+        </div>
+      </article>
+    `).join('');
   }
 
-  function extractImageUrl(html) {
+  // Yardımcı fonksiyonlar
+  function getImageUrl(html) {
     const match = html.match(/<img[^>]+src="([^"]+)"/);
-    return match ? match[1] : 'https://via.placeholder.com/300x200?text=Resim+Yok';
+    return match ? match[1] : '';
   }
 
-  function truncateText(text, maxLength) {
-    const cleanText = text.replace(/<[^>]*>?/gm, '');
-    return cleanText.length > maxLength 
-      ? cleanText.substring(0, maxLength) + '...' 
-      : cleanText;
+  function cleanText(html, maxLength) {
+    const text = html.replace(/<[^>]*>?/gm, '');
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
   }
 
-  // Sayfa yüklendiğinde haberleri getir
-  document.addEventListener('DOMContentLoaded', () => {
-    fetchNews();
-    // Her 5 dakikada bir güncelle
-    setInterval(fetchNews, 5 * 60 * 1000);
-  });
+  // Sayfa yüklendiğinde haberleri al
+  document.addEventListener('DOMContentLoaded', loadNews);
+  
+  // Her 5 dakikada bir güncelle
+  setInterval(loadNews, 5 * 60 * 1000);
 </script>
+
 </body>
 </html>
