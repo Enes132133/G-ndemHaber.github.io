@@ -1,16 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="GündemLive - Türkiye'nin en güncel haberleri, son dakika gelişmeleri, politika, ekonomi, spor, teknoloji, dünya ve daha fazlası. Tarafsız ve güvenilir habercilik.">
-  <meta name="keywords" content="haberler, gündem, son dakika, Türkiye, ekonomi, spor, dünya, politika, teknoloji, kültür, sanat, güncel haberler">
+  <meta name="keywords" content="haberler, gündem, son dakika, Türkiye, ekonomi, spor, dünya, politika, teknoloji, kültür, sanat, güncel haberler, arama, kategoriler">
   <meta name="author" content="GündemLive">
   <title>GündemLive - Güncel Türkiye Haberleri ve Son Dakika Gelişmeleri</title>
 
   <link rel="icon" href="https://via.placeholder.com/32x32?text=GL" type="image/x-icon">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -25,7 +23,7 @@
       --yellow-accent: #ffc107;
       --card-bg: var(--white);
       --section-bg: var(--light-gray);
-      --border-color: #fsx342;
+      --border-color: #dee2e6; /* Adjusted for better contrast */
     }
 
     body.dark-mode {
@@ -84,7 +82,6 @@
         margin-right: 8px; /* Space between logo and text */
         vertical-align: middle; /* Align with text */
     }
-
 
     /* Dark Mode Toggle Button */
     #darkModeToggle {
@@ -211,7 +208,6 @@
         filter: invert(100%); /* Make arrows white */
     }
 
-
     /* News Section */
     .news-section {
       max-width: 1200px;
@@ -304,6 +300,7 @@
       border-radius: 25px;
       text-decoration: none;
       font-weight: 500;
+      cursor: pointer; /* Make it look clickable */
       transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
     }
     .category-pill:hover {
@@ -318,6 +315,38 @@
     body.dark-mode .category-pill:hover {
         background-color: var(--primary-color);
         color: #fff;
+    }
+    .category-pill.active {
+      background-color: var(--yellow-accent);
+      color: var(--dark-blue);
+      font-weight: bold;
+    }
+    body.dark-mode .category-pill.active {
+        background-color: var(--yellow-accent);
+        color: var(--dark-blue);
+    }
+
+    /* Search Bar */
+    .search-bar {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+    .search-bar .form-control {
+        border-radius: 50px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-color: var(--border-color);
+        background-color: var(--card-bg);
+        color: var(--text-color);
+    }
+    body.dark-mode .search-bar .form-control {
+        background-color: var(--dark-blue);
+        color: var(--text-color);
+        border-color: #555;
+    }
+    .search-bar .form-control::placeholder {
+        color: #888;
     }
 
     /* Footer */
@@ -394,6 +423,31 @@
     }
     body.dark-mode #backToTopBtn:hover {
         background-color: var(--secondary-color);
+    }
+
+    /* Modal Styles */
+    .modal-content {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border-radius: 12px;
+    }
+    .modal-header {
+        border-bottom: 1px solid var(--border-color);
+    }
+    .modal-footer {
+        border-top: 1px solid var(--border-color);
+    }
+    .modal-title {
+        color: var(--primary-color);
+    }
+    body.dark-mode .modal-title {
+        color: var(--secondary-color);
+    }
+    .btn-close {
+        filter: invert(0); /* Default for light mode */
+    }
+    body.dark-mode .btn-close {
+        filter: invert(1); /* Invert for dark mode to make it white */
     }
 
     /* Responsive adjustments */
@@ -473,7 +527,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://via.placeholder.com/30x30?text=LOGO" alt="GündemLive Logo">
+      <img src="https://via.placeholder.com/30x30?text=GL" alt="GündemLive Logo">
       GündemLive
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -485,11 +539,12 @@
         <li class="nav-item"><a class="nav-link" href="#slider">Öne Çıkanlar</a></li>
         <li class="nav-item"><a class="nav-link" href="#haberler">Son Haberler</a></li>
         <li class="nav-item"><a class="nav-link" href="#kategoriler">Kategoriler</a></li>
-        <li class="nav-item"><a class="nav-link" href="#iletisim">İletişim</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Hakkımızda</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Hakkımızda</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Gizlilik</a></li>
         <li class="nav-item">
             <button id="darkModeToggle" class="nav-link" aria-label="Karanlık Modu Aç/Kapat">
-                <i class="fas fa-moon"></i> </button>
+                <i class="fas fa-moon"></i>
+            </button>
         </li>
       </ul>
     </div>
@@ -506,11 +561,12 @@
 <section id="slider" class="carousel-section">
   <h2 class="text-center mb-4 text-primary">Öne Çıkan Haberler</h2>
   <hr class="mb-5">
-  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000"> <div class="carousel-indicators" id="carouselIndicators">
-      </div>
+  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-indicators" id="carouselIndicators">
+    </div>
     <div class="carousel-inner" id="carouselInner">
-      <p class="text-center text-secondary">Slider haberleri yükleniyor...</p>
-      </div>
+      <p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>
+    </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -522,18 +578,26 @@
   </div>
 </section>
 
+<section class="search-bar">
+    <div class="input-group">
+        <input type="text" id="newsSearchInput" class="form-control" placeholder="Haberlerde ara..." aria-label="Haberlerde ara">
+        <button class="btn btn-primary" type="button" id="newsSearchButton"><i class="fas fa-search"></i> Ara</button>
+    </div>
+</section>
+
 <section id="kategoriler" class="categories-section">
   <h2 class="text-center mb-4 text-primary">Keşfet</h2>
   <hr class="mb-5">
-  <div class="d-flex flex-wrap justify-content-center">
-    <a href="#" class="category-pill">Politika</a>
-    <a href="#" class="category-pill">Ekonomi</a>
-    <a href="#" class="category-pill">Spor</a>
-    <a href="#" class="category-pill">Teknoloji</a>
-    <a href="#" class="category-pill">Yaşam</a>
-    <a href="#" class="category-pill">Dünya</a>
-    <a href="#" class="category-pill">Sağlık</a>
-    <a href="#" class="category-pill">Eğitim</a>
+  <div class="d-flex flex-wrap justify-content-center" id="categoryPills">
+    <a href="#" class="category-pill active" data-filter="all">Tümü</a>
+    <a href="#" class="category-pill" data-filter="siyaset">Politika</a>
+    <a href="#" class="category-pill" data-filter="ekonomi">Ekonomi</a>
+    <a href="#" class="category-pill" data-filter="spor">Spor</a>
+    <a href="#" class="category-pill" data-filter="teknoloji">Teknoloji</a>
+    <a href="#" class="category-pill" data-filter="yaşam">Yaşam</a>
+    <a href="#" class="category-pill" data-filter="dünya">Dünya</a>
+    <a href="#" class="category-pill" data-filter="sağlık">Sağlık</a>
+    <a href="#" class="category-pill" data-filter="eğitim">Eğitim</a>
   </div>
 </section>
 
@@ -541,7 +605,7 @@
   <h2 class="text-center mb-4 text-primary">Son Dakika Haberleri</h2>
   <hr class="mb-5">
   <div id="newsContainer" class="row">
-    <p class="text-center">Haberler yükleniyor...</p>
+    <p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>
   </div>
 </section>
 
@@ -558,13 +622,13 @@
           <li><a href="#">Ana Sayfa</a></li>
           <li><a href="#haberler">Haberler</a></li>
           <li><a href="#kategoriler">Kategoriler</a></li>
-          <li><a href="#">Gizlilik Politikası</a></li>
-          <li><a href="#">Künye</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Gizlilik Politikası</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Künye</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-3">
         <h5>Bize Ulaşın</h5>
-        <p>Email: <a href="mailto:simsekenes762@gmail.com">info@gundemlive.com</a></p>
+        <p>Email: <a href="mailto:info@gundemlive.com">info@gundemlive.com</a></p>
         <p>Telefon: +90 (551)276 93 13</p>
         <div class="social-icons">
           <a href="https://www.facebook.com/GundemLive" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -581,21 +645,81 @@
 
 <button onclick="topFunction()" id="backToTopBtn" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aboutModalLabel">Künye / Hakkımızda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>GündemLive Hakkında</h6>
+        <p>GündemLive, 2025 yılında kurulan, Türkiye ve dünyadan en güncel haberleri tarafsız ve güvenilir bir habercilik anlayışıyla okuyucularına sunmayı hedefleyen bir dijital haber platformudur. Amacımız, doğru ve hızlı bilgi akışını sağlamak, farklı bakış açılarını bir araya getirmek ve okuyucularımızın bilinçli kararlar almasına yardımcı olmaktır.</p>
+        <h6>Vizyonumuz</h6>
+        <p>Dijital habercilikte lider, güvenilir ve referans alınan bir platform olmak.</p>
+        <h6>Misyonumuz</h6>
+        <p>Okuyucularımıza şeffaf, objektif ve güncel haberler sunarak toplumsal bilgi düzeyini artırmak ve özgür tartışma ortamına katkıda bulunmak.</p>
+        <h6>İletişim</h6>
+        <ul>
+          <li><strong>E-posta:</strong> info@gundemlive.com</li>
+          <li><strong>Telefon:</strong> +90 (551) 276 93 13</li>
+          <li><strong>Adres:</strong> Dijital Medya Ofisleri, İstanbul/Türkiye</li>
+        </ul>
+        <h6>Yönetim Kadrosu</h6>
+        <ul>
+          <li><strong>Genel Yayın Yönetmeni:</strong> Enes Şimşek</li>
+          <li><strong>Sorumlu Yazı İşleri Müdürü:</strong> Ayşe Yılmaz</li>
+          <li><strong>Editörler:</strong> Mehmet Can, Zeynep Demir</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="privacyModalLabel">Gizlilik Politikası</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Giriş</h6>
+        <p>GündemLive olarak, kişisel verilerinizin korunmasına büyük önem veriyoruz. Bu Gizlilik Politikası, web sitemizi ziyaret ettiğinizde hangi tür bilgileri topladığımızı, bu bilgileri nasıl kullandığımızı ve verilerinizi nasıl koruduğumuzu açıklamaktadır.</p>
+        <h6>Topladığımız Bilgiler</h6>
+        <p>Web sitemiz, doğrudan kişisel bilgi toplamaz. Ancak, web sitesi kullanım istatistikleri için anonim veriler toplayabiliriz (örn. sayfa ziyaretleri, tarayıcı türleri). Ayrıca, üçüncü taraf RSS hizmeti aracılığıyla haberleri sunmaktayız ve bu hizmetlerin kendi gizlilik politikaları olabilir.</p>
+        <h6>Çerezler (Cookies)</h6>
+        <p>Web sitemiz, kullanıcı deneyiminizi iyileştirmek ve site trafiğini analiz etmek amacıyla çerezleri kullanabilir. Tarayıcı ayarlarınızdan çerezleri yönetebilir veya silebilirsiniz.</p>
+        <h6>Kişisel Verilerin Korunması</h6>
+        <p>GündemLive, topladığı tüm verileri güvenlik standartlarına uygun olarak korur. Kişisel verilerinizin yetkisiz erişime, kullanıma veya ifşaya karşı korunması için gerekli teknik ve idari önlemleri almaktayız.</p>
+        <h6>Üçüncü Taraf Bağlantıları</h6>
+        <p>Web sitemiz, harici sitelere bağlantılar içerebilir. Bu sitelerin içeriklerinden veya gizlilik uygulamalarından sorumlu değiliz. Ziyaret ettiğiniz her sitenin gizlilik politikasını okumanızı tavsiye ederiz.</p>
+        <h6>Değişiklikler</h6>
+        <p>Bu gizlilik politikası zaman zaman güncellenebilir. Güncellemeler bu sayfada yayımlanacaktır.</p>
+        <p>Son Güncelleme Tarihi: 27 Haziran 2025</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  let allNewsData = []; // Tüm haberleri saklamak için global değişken
+
   async function fetchNews() {
     const newsContainer = document.getElementById('newsContainer');
     const carouselInner = document.getElementById('carouselInner');
     const carouselIndicators = document.getElementById('carouselIndicators');
 
-    // Display loading messages only if containers are empty or it's the first load
-    if (newsContainer.innerHTML === '' || newsContainer.innerHTML.includes('Haberler yükleniyor')) {
-        newsContainer.innerHTML = '<p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>';
-    }
-    if (carouselInner.innerHTML === '' || carouselInner.innerHTML.includes('Slider haberleri yükleniyor')) {
-        carouselInner.innerHTML = '<p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>';
-    }
+    // Display loading messages
+    newsContainer.innerHTML = '<p class="text-center text-primary"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>';
+    carouselInner.innerHTML = '<p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>';
     carouselIndicators.innerHTML = ''; // Always clear indicators to rebuild them
 
     try {
@@ -606,85 +730,119 @@
       const data = await res.json();
 
       if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-        const errorMessage = '<p class="text-center text-danger">Haberler alınamadı. Lütfen daha sonra tekrar deneyin.</p>';
+        const errorMessage = '<p class="text-center text-danger"><i class="fas fa-exclamation-triangle me-2"></i> Haberler alınamadı. Lütfen daha sonra tekrar deneyin.</p>';
         newsContainer.innerHTML = errorMessage;
         carouselInner.innerHTML = errorMessage;
         return;
       }
 
-      // --- Process News for Main Section ---
-      newsContainer.innerHTML = ''; // Clear loading message for news cards
-      const newsItemsToDisplay = data.items.slice(0, 20); // Show first 20 news items
-      if (newsItemsToDisplay.length === 0) {
-        newsContainer.innerHTML = '<p class="text-center text-warning">Şu anda görüntülenecek haber bulunmamaktadır.</p>';
-      } else {
-        newsItemsToDisplay.forEach(item => {
-          const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-          let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
-          if (imageUrl && !imageUrl.startsWith('http')) {
-              imageUrl = 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
-          }
-          const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-          const shortDescription = cleanDescription.length > 180 ? cleanDescription.substring(0, 180) + '...' : cleanDescription;
-
-          const newsHTML = `
-            <div class="col-lg-4 col-md-6">
-              <div class="card news-card">
-                <img src="${imageUrl}" class="card-img-top" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Resim+Yüklenemedi';">
-                <div class="card-body">
-                  <h5 class="card-title">${item.title}</h5>
-                  <p class="card-text">${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
-                  <a href="${item.link}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
-                </div>
-              </div>
-            </div>
-          `;
-          newsContainer.innerHTML += newsHTML;
-        });
-      }
-
-
-      // --- Process News for Carousel ---
-      carouselInner.innerHTML = ''; // Clear loading message for carousel
-      const carouselItems = data.items.slice(0, 5); // Show first 5 news items in carousel
-      if (carouselItems.length === 0) {
-        carouselInner.innerHTML = '<p class="text-center text-warning">Slider için haber bulunmamaktadır.</p>';
-      } else {
-        carouselItems.forEach((item, index) => {
-          const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-          let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok'; // Larger placeholder for carousel
-          if (imageUrl && !imageUrl.startsWith('http')) {
-              imageUrl = 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok';
-          }
-
-          const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-          const shortDescription = cleanDescription.length > 200 ? cleanDescription.substring(0, 200) + '...' : cleanDescription;
-
-          const carouselItemHTML = `
-            <div class="carousel-item ${index === 0 ? 'active' : ''}">
-              <img src="${imageUrl}" class="d-block w-100" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/1200x600?text=Resim+Yüklenemedi';">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>${item.title}</h5>
-                <p>${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
-                <a href="${item.link}" class="btn btn-warning" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-          `;
-          carouselInner.innerHTML += carouselItemHTML;
-
-          const indicatorButton = `
-            <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>
-          `;
-          carouselIndicators.innerHTML += indicatorButton;
-        });
-      }
-
+      allNewsData = data.items; // Tüm haberleri global değişkene ata
+      displayNews(allNewsData); // Haberleri ilk kez göster
+      displayCarousel(allNewsData); // Carousel'i ilk kez göster
 
     } catch (err) {
       console.error("Haberleri alırken bir hata oluştu:", err);
-      newsContainer.innerHTML = '<p class="text-center text-danger">Bağlantı hatası: Güncel haberler alınamadı. Lütfen internet bağlantınızı kontrol edin.</p>';
-      carouselInner.innerHTML = '<p class="text-center text-danger">Slider haberleri yüklenemedi. Lütfen internet bağlantınızı kontrol edin.</p>';
+      const connectionError = '<p class="text-center text-danger"><i class="fas fa-times-circle me-2"></i> Bağlantı hatası: Güncel haberler alınamadı. Lütfen internet bağlantınızı kontrol edin.</p>';
+      newsContainer.innerHTML = connectionError;
+      carouselInner.innerHTML = connectionError;
     }
+  }
+
+  function displayNews(newsItems, searchTerm = '', filterCategory = 'all') {
+    const newsContainer = document.getElementById('newsContainer');
+    newsContainer.innerHTML = ''; // Clear existing news
+
+    let filteredNews = newsItems;
+
+    // Kategoriye göre filtreleme
+    if (filterCategory !== 'all') {
+        filteredNews = filteredNews.filter(item => {
+            const titleLower = item.title.toLowerCase();
+            const descriptionLower = (item.description || '').toLowerCase();
+            return titleLower.includes(filterCategory) || descriptionLower.includes(filterCategory);
+        });
+    }
+
+    // Arama terimine göre filtreleme (kategori filtresi sonrası)
+    if (searchTerm) {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        filteredNews = filteredNews.filter(item => {
+            const titleLower = item.title.toLowerCase();
+            const descriptionLower = (item.description || '').toLowerCase();
+            return titleLower.includes(lowerCaseSearchTerm) || descriptionLower.includes(lowerCaseSearchTerm);
+        });
+    }
+
+    if (filteredNews.length === 0) {
+      newsContainer.innerHTML = '<p class="text-center text-warning"><i class="fas fa-info-circle me-2"></i> Aradığınız kriterlere uygun haber bulunamadı.</p>';
+      return;
+    }
+
+    filteredNews.slice(0, 20).forEach(item => { // Show first 20 filtered news items
+      const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
+      let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
+      if (imageUrl && !imageUrl.startsWith('http')) {
+          imageUrl = 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
+      }
+      const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
+      const shortDescription = cleanDescription.length > 180 ? cleanDescription.substring(0, 180) + '...' : cleanDescription;
+
+      const newsHTML = `
+        <div class="col-lg-4 col-md-6">
+          <div class="card news-card">
+            <img src="${imageUrl}" class="card-img-top" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Resim+Yüklenemedi';">
+            <div class="card-body">
+              <h5 class="card-title">${item.title}</h5>
+              <p class="card-text">${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
+              <a href="${item.link}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      `;
+      newsContainer.innerHTML += newsHTML;
+    });
+  }
+
+  function displayCarousel(newsItems) {
+    const carouselInner = document.getElementById('carouselInner');
+    const carouselIndicators = document.getElementById('carouselIndicators');
+    carouselInner.innerHTML = '';
+    carouselIndicators.innerHTML = '';
+
+    const carouselItems = newsItems.slice(0, 5); // Show first 5 news items in carousel
+
+    if (carouselItems.length === 0) {
+      carouselInner.innerHTML = '<p class="text-center text-warning"><i class="fas fa-info-circle me-2"></i> Slider için haber bulunmamaktadır.</p>';
+      return;
+    }
+
+    carouselItems.forEach((item, index) => {
+      const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
+      let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok'; // Larger placeholder for carousel
+      if (imageUrl && !imageUrl.startsWith('http')) {
+          imageUrl = 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok';
+      }
+
+      const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
+      const shortDescription = cleanDescription.length > 200 ? cleanDescription.substring(0, 200) + '...' : cleanDescription;
+
+      const carouselItemHTML = `
+        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+          <img src="${imageUrl}" class="d-block w-100" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/1200x600?text=Resim+Yüklenemedi';">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>${item.title}</h5>
+            <p>${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
+            <a href="${item.link}" class="btn btn-warning" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+      `;
+      carouselInner.innerHTML += carouselItemHTML;
+
+      const indicatorButton = `
+        <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>
+      `;
+      carouselIndicators.innerHTML += indicatorButton;
+    });
   }
 
   // Back-to-top button functionality
@@ -728,11 +886,47 @@
     }
   });
 
-  // Fetch news on page load
+  // --- Search Functionality ---
+  const newsSearchInput = document.getElementById('newsSearchInput');
+  const newsSearchButton = document.getElementById('newsSearchButton');
+
+  function performSearchAndFilter() {
+      const searchTerm = newsSearchInput.value.trim();
+      const activeCategory = document.querySelector('.category-pill.active')?.dataset.filter || 'all';
+      displayNews(allNewsData, searchTerm, activeCategory);
+  }
+
+  newsSearchButton.addEventListener('click', performSearchAndFilter);
+  newsSearchInput.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+          performSearchAndFilter();
+      }
+  });
+
+  // --- Category Filtering Functionality ---
+  const categoryPills = document.getElementById('categoryPills');
+  categoryPills.addEventListener('click', (event) => {
+      if (event.target.classList.contains('category-pill')) {
+          event.preventDefault(); // Prevent default link behavior
+
+          // Remove active class from all pills
+          document.querySelectorAll('.category-pill').forEach(pill => {
+              pill.classList.remove('active');
+          });
+
+          // Add active class to the clicked pill
+          event.target.classList.add('active');
+
+          const filterCategory = event.target.dataset.filter;
+          const searchTerm = newsSearchInput.value.trim(); // Get current search term
+          displayNews(allNewsData, searchTerm, filterCategory);
+      }
+  });
+
+  // Fetch news on page load and set interval for refresh
   window.onload = () => {
     fetchNews(); // Initial load
-    setInterval(fetchNews, 60000); // Refresh news every 60 seconds (1 minute)
-
+    setInterval(fetchNews, 60000 * 5); // Refresh news every 5 minutes (adjust as needed)
   };
 </script>
 
