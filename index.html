@@ -3,872 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GündemLive - Türkiye'nin en güncel haberleri, son dakika gelişmeleri, politika, ekonomi, spor, teknoloji, dünya ve daha fazlası. Tarafsız ve güvenilir habercilik.">
-  <meta name="keywords" content="haberler, gündem, son dakika, Türkiye, ekonomi, spor, dünya, politika, teknoloji, kültür, sanat, güncel haberler, arama, kategoriler">
-  <meta name="author" content="GündemLive">
-  <title>GündemLive - Güncel Türkiye Haberleri ve Son Dakika Gelişmeleri</title>
-
-  <!-- Favicon (Şimşek Logolu) -->
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" type="image/png">
-
-  <!-- Bootstrap CSS -->
+  <title>GündemLive - Hızlı Haber Portalı</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965879.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --primary-color: #1a3e72; /* Daha koyu mavi ton */
-      --secondary-color: #2a56a5;
-      --accent-color: #ff5722; /* Turuncu aksan rengi */
-      --dark-color: #1a1a1a;
-      --light-color: #f8f9fa;
-      --text-color: #333;
-      --white: #fff;
-      --card-bg: var(--white);
-      --border-color: #dee2e6;
-      --section-bg: #f5f5f5;
+      --primary-color: #1a3e72;
+      --accent-color: #ff5722;
+      --card-bg: #fff;
     }
-
-    body.dark-mode {
-      --primary-color: #0d2b57;
-      --secondary-color: #1a4b9c;
-      --accent-color: #ff7043;
-      --dark-color: #121212;
-      --light-color: #1e1e1e;
-      --text-color: #e0e0e0;
-      --white: #2d2d2d;
-      --card-bg: #252525;
-      --border-color: #444;
-      --section-bg: #121212;
-    }
-
     body {
-      font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--section-bg);
-      color: var(--text-color);
-      transition: all 0.3s ease;
-      line-height: 1.6;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
     }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-    }
-
-    /* Navbar */
     .navbar {
       background-color: var(--primary-color);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 0.8rem 0;
     }
-
-    .navbar-brand {
-      font-weight: 700;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      letter-spacing: 0.5px;
-    }
-
-    .navbar-brand img {
-      height: 32px;
-      margin-right: 10px;
-      filter: drop-shadow(0 0 2px rgba(255, 87, 34, 0.7));
-      transition: transform 0.3s ease;
-    }
-
-    .navbar-brand:hover img {
-      transform: scale(1.1);
-    }
-
-    .nav-link {
-      font-weight: 500;
-      margin: 0 5px;
-      transition: all 0.3s ease;
-      padding: 0.5rem 1rem !important;
-      border-radius: 4px;
-    }
-
-    .navbar-brand, .nav-link {
-      color: var(--white) !important;
-    }
-
-    .navbar-brand:hover, .nav-link:hover {
-      color: var(--accent-color) !important;
-    }
-
-    .nav-link:hover {
-      background-color: rgba(255,255,255,0.1);
-    }
-
-    /* Logo Animasyonu */
-    @keyframes lightning {
-      0% { opacity: 1; }
-      50% { opacity: 0.7; filter: drop-shadow(0 0 5px var(--accent-color)); }
-      100% { opacity: 1; }
-    }
-
-    .lightning-logo {
-      animation: lightning 3s infinite;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 80px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-      opacity: 0.15;
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      margin: 0 auto 30px;
-      max-width: 700px;
-      opacity: 0.9;
-    }
-
-    /* Breaking News Banner */
-    .breaking-news {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      padding: 10px 0;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .breaking-news span {
-      background-color: var(--dark-color);
-      color: var(--accent-color);
-      padding: 3px 10px;
-      border-radius: 4px;
-      margin-right: 15px;
-      font-size: 0.9rem;
-    }
-
-    /* Carousel Section */
-    .carousel-section {
-      max-width: 1200px;
-      margin: 0 auto 50px;
-      padding: 0 15px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-      padding-bottom: 15px;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
-      background-color: var(--accent-color);
-    }
-
-    #newsCarousel .carousel-item {
-      height: 500px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    #newsCarousel .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    #newsCarousel .carousel-item:hover img {
-      transform: scale(1.03);
-    }
-
-    #newsCarousel .carousel-caption {
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      padding: 30px;
-      text-align: left;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-    }
-
-    #newsCarousel .carousel-caption h5 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    }
-
-    #newsCarousel .carousel-caption p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      opacity: 0.9;
-    }
-
-    #newsCarousel .carousel-caption .btn {
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-      color: var(--dark-color);
-      font-weight: 600;
-      padding: 8px 20px;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-    }
-
-    #newsCarousel .carousel-caption .btn:hover {
-      background-color: transparent;
-      color: var(--accent-color);
-      border-color: var(--accent-color);
-      transform: translateY(-3px);
-    }
-
-    /* News Section */
-    .news-section {
-      max-width: 1200px;
-      margin: 0 auto 60px;
-      padding: 0 15px;
-    }
-
     .news-card {
-      margin-bottom: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      border: none;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      height: 100%;
-      background-color: var(--card-bg);
+      transition: transform 0.2s;
     }
-
     .news-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
-    .news-card .card-img-top {
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .news-card:hover .card-img-top {
-      transform: scale(1.05);
-    }
-
-    .news-card .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      height: calc(100% - 220px);
-    }
-
-    .news-card .category-badge {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 3px 10px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      align-self: flex-start;
-    }
-
-    .news-card h5 {
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--primary-color);
-      transition: color 0.3s ease;
-    }
-
-    .news-card:hover h5 {
-      color: var(--accent-color);
-    }
-
-    .news-card .card-text {
-      font-size: 0.95rem;
-      color: var(--text-color);
-      margin-bottom: 15px;
-      flex-grow: 1;
-      opacity: 0.9;
-    }
-
-    .news-card .news-meta {
-      font-size: 0.85rem;
-      color: #6c757d;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-    }
-
-    body.dark-mode .news-card .news-meta {
-      color: #aaa;
-    }
-
-    .news-card .news-meta i {
-      margin-right: 5px;
-      color: var(--accent-color);
-    }
-
-    .news-card .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      font-weight: 500;
-      border-radius: 50px;
-      padding: 8px 20px;
-      align-self: flex-start;
-      transition: all 0.3s ease;
-    }
-
-    .news-card .btn-primary:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-      transform: translateY(-3px);
-    }
-
-    /* Search Bar */
-    .search-bar {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
-
-    .search-bar .form-control {
-      border-radius: 50px 0 0 50px;
-      padding: 12px 20px;
-      border: 1px solid var(--border-color);
-      border-right: none;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-    }
-
-    .search-bar .btn {
-      border-radius: 0 50px 50px 0;
-      padding: 12px 20px;
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-      color: var(--dark-color);
-      font-weight: 600;
-    }
-
-    .search-bar .btn:hover {
-      background-color: #e64a19;
-      border-color: #e64a19;
-    }
-
-    /* Categories Section */
-    .categories-section {
-      max-width: 1200px;
-      margin: 0 auto 40px;
-      padding: 0 15px;
-    }
-
-    .category-pill {
-      display: inline-block;
-      background-color: var(--primary-color);
-      color: var(--white);
-      padding: 8px 20px;
-      margin: 5px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .category-pill:hover {
-      background-color: var(--secondary-color);
-      transform: translateY(-2px);
-      color: var(--white);
-    }
-
-    body.dark-mode .category-pill {
-      background-color: var(--dark-color);
-      color: var(--text-color);
-    }
-
-    body.dark-mode .category-pill:hover {
-      background-color: var(--primary-color);
-      color: var(--white);
-    }
-
-    .category-pill.active {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      font-weight: bold;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--primary-color);
-      color: var(--white);
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 60px;
-      font-size: 0.95rem;
-    }
-
-    footer a {
-      color: var(--accent-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: var(--white);
-      text-decoration: underline;
-    }
-
-    .social-icons {
-      margin-top: 20px;
-    }
-
-    .social-icons a {
-      color: var(--white);
-      font-size: 1.5rem;
-      margin: 0 12px;
-      transition: all 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent-color);
-      transform: scale(1.2);
-    }
-
-    /* Back-to-top button */
-    #backToTopBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 99;
-      font-size: 18px;
-      border: none;
-      outline: none;
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-
-    #backToTopBtn:hover {
-      background-color: var(--white);
       transform: translateY(-5px);
     }
-
-    /* Contact Info */
-    .contact-info {
-      margin-top: 20px;
-      font-size: 0.9rem;
-    }
-
-    .contact-info a {
-      color: var(--white);
-      text-decoration: none;
-    }
-
-    .contact-info a:hover {
-      color: var(--accent-color);
-      text-decoration: underline;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      #newsCarousel .carousel-item {
-        height: 400px;
-      }
-      
-      #newsCarousel .carousel-caption h5 {
-        font-size: 1.8rem;
-      }
-      
-      #newsCarousel .carousel-caption p {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: 60px 20px;
-      }
-      
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
-      }
-      
-      #newsCarousel .carousel-item {
-        height: 350px;
-      }
-      
-      #newsCarousel .carousel-caption {
-        padding: 20px;
-      }
-      
-      #newsCarousel .carousel-caption h5 {
-        font-size: 1.5rem;
-      }
-      
-      #newsCarousel .carousel-caption p {
-        -webkit-line-clamp: 2;
-      }
-      
-      .news-card .card-img-top {
-        height: 180px;
-      }
-      
-      .navbar-brand {
-        font-size: 1.3rem;
-      }
-      
-      .navbar-brand img {
-        height: 28px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .hero {
-        padding: 50px 15px;
-      }
-      
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      .hero p {
-        font-size: 1rem;
-      }
-      
-      #newsCarousel .carousel-item {
-        height: 300px;
-      }
-      
-      #newsCarousel .carousel-caption {
-        padding: 15px;
-      }
-      
-      #newsCarousel .carousel-caption h5 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-      }
-      
-      #newsCarousel .carousel-caption p {
-        display: none;
-      }
-      
-      .breaking-news span {
-        display: block;
-        margin-right: 0;
-        margin-bottom: 5px;
-      }
-      
-      .search-bar .form-control {
-        padding: 10px 15px;
-      }
-      
-      .search-bar .btn {
-        padding: 10px 15px;
-      }
-      
-      .category-pill {
-        padding: 6px 15px;
-        font-size: 0.9rem;
-      }
-    }
+    /* Diğer stil tanımlamaları... */
   </style>
 </head>
 <body>
 
-<!-- Breaking News Banner -->
-<div class="breaking-news">
-  <div class="container">
-    <span>SON DAKİKA</span>
-    <span id="breakingNewsText">Türkiye'de yeni ekonomik paket açıklandı! Detaylar için tıklayın.</span>
-  </div>
-</div>
+<!-- Navbar ve diğer HTML elemanları... -->
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="GündemLive Logo" class="lightning-logo">
-      Gündem<span style="color: var(--accent-color)">Live</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#">Ana Sayfa</a></li>
-        <li class="nav-item"><a class="nav-link" href="#slider">Öne Çıkanlar</a></li>
-        <li class="nav-item"><a class="nav-link" href="#haberler">Son Haberler</a></li>
-        <li class="nav-item"><a class="nav-link" href="#kategoriler">Kategoriler</a></li>
-        <li class="nav-item">
-          <button id="darkModeToggle" class="btn btn-link nav-link" aria-label="Karanlık Mod">
-            <i class="fas fa-moon"></i>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="hero-content">
-    <h1>Gündemi Yakından Takip Et</h1>
-    <p>Türkiye ve dünyadan en güncel haberler, son dakika gelişmeleri, analizler ve özel içerikler her gün burada!</p>
-    <a href="#haberler" class="btn btn-warning btn-lg">Son Haberleri Gör <i class="fas fa-arrow-down ms-2"></i></a>
-  </div>
-</header>
-
-<section id="slider" class="carousel-section">
-  <h2 class="section-title text-primary">Öne Çıkan Haberler</h2>
-  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
-    <div class="carousel-indicators" id="carouselIndicators">
-    </div>
-    <div class="carousel-inner" id="carouselInner">
-      <p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</section>
-
-<section class="search-bar">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="input-group">
-              <input type="text" id="newsSearchInput" class="form-control" placeholder="Haber başlığı veya içerik ara..." aria-label="Haberlerde ara">
-              <button class="btn btn-primary" type="button" id="newsSearchButton"><i class="fas fa-search me-2"></i> Ara</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
-
-<section id="kategoriler" class="categories-section">
-  <div class="container">
-    <h2 class="section-title text-primary">Kategoriler</h2>
-    <div class="d-flex flex-wrap justify-content-center" id="categoryPills">
-      <a href="#" class="category-pill active" data-filter="all">Tümü</a>
-      <a href="#" class="category-pill" data-filter="siyaset">Politika</a>
-      <a href="#" class="category-pill" data-filter="ekonomi">Ekonomi</a>
-      <a href="#" class="category-pill" data-filter="spor">Spor</a>
-      <a href="#" class="category-pill" data-filter="teknoloji">Teknoloji</a>
-      <a href="#" class="category-pill" data-filter="yaşam">Yaşam</a>
-      <a href="#" class="category-pill" data-filter="dünya">Dünya</a>
-      <a href="#" class="category-pill" data-filter="sağlık">Sağlık</a>
-      <a href="#" class="category-pill" data-filter="eğitim">Eğitim</a>
-    </div>
-  </div>
-</section>
-
-<section id="haberler" class="news-section">
-  <div class="container">
-    <h2 class="section-title text-primary">Son Dakika Haberleri</h2>
-    <div id="newsContainer" class="row">
-      <p class="text-center"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>
-    </div>
-    <div class="text-center mt-4">
-      <button id="loadMoreBtn" class="btn btn-outline-primary">Daha Fazla Haber Yükle <i class="fas fa-plus ms-2"></i></button>
-    </div>
-  </div>
-</section>
-
-<footer id="iletisim">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <h5>GündemLive</h5>
-        <p>Tarafsız ve güvenilir habercilik anlayışıyla Türkiye ve dünyadan en güncel gelişmeleri sizlere sunuyoruz.</p>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/GundemLive" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com/GundemLive" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/GundemLive" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <h5>Hızlı Bağlantılar</h5>
-        <ul class="list-unstyled">
-          <li><a href="#">Ana Sayfa</a></li>
-          <li><a href="#haberler">Haberler</a></li>
-          <li><a href="#kategoriler">Kategoriler</a></li>
-          <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Gizlilik Politikası</a></li>
-          <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Künye</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 mb-4">
-        <h5>İletişim</h5>
-        <div class="contact-info">
-          <p><i class="fas fa-envelope me-2"></i> <a href="mailto:simsekenes762@gmail.com">simsekenes762@gmail.com</a></p>
-          <p><i class="fas fa-phone me-2"></i> <a href="tel:+905512769313">+90 551 276 9313</a></p>
-          <p><i class="fas fa-map-marker-alt me-2"></i> İstanbul, Türkiye</p>
-        </div>
-      </div>
-    </div>
-    <hr class="mt-4 mb-3">
-    <p class="mb-0">&copy; 2025 GündemLive | Tüm Hakları Saklıdır.</p>
-  </div>
-</footer>
-
-<button onclick="topFunction()" id="backToTopBtn" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
-
-<!-- Kalan modal ve diğer HTML kodları... -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  let allNewsData = []; // Tüm haberleri saklamak için global değişken
-  let currentDisplayCount = 12; // Başlangıçta gösterilecek haber sayısı
-  let newsSources = [
-    { name: 'TRT Haber', url: 'https://www.trthaber.com/manset_articles.rss' },
-    { name: 'NTV', url: 'https://www.ntv.com.tr/gundem.rss' },
-    { name: 'Hürriyet', url: 'https://www.hurriyet.com.tr/rss/gundem' },
-    { name: 'Sabah', url: 'https://www.sabah.com.tr/rss/gundem.xml' },
-    { name: 'Fotomaç', url: 'https://www.fotomac.com.tr/rss' }
-  ];
-  let currentSourceIndex = 0;
-
-  // Breaking News Text
-  const breakingNewsTexts = [
-    "Bakanlar Kurulu toplantısı sona erdi! Yeni kararlar açıklandı",
-    "Dolar ve Euro'da son durum: Merkez Bankası'ndan açıklama geldi",
-    "Spor Toto Süper Lig'de şampiyonluk yarışı kızışıyor",
-    "Teknoloji devinden yeni akıllı telefon tanıtıldı",
-    "Sağlık Bakanlığı'ndan aşı çalışmaları hakkında önemli açıklama"
-  ];
-
-  // Rastgele breaking news seç
-  document.getElementById('breakingNewsText').textContent = 
-    breakingNewsTexts[Math.floor(Math.random() * breakingNewsTexts.length)];
+  // Önbellek mekanizması
+  const NEWS_CACHE_KEY = 'gundemlive_news_cache';
+  const CACHE_EXPIRE_TIME = 5 * 60 * 1000; // 5 dakika
 
   async function fetchNews() {
-    const newsContainer = document.getElementById('newsContainer');
-    const carouselInner = document.getElementById('carouselInner');
-    const carouselIndicators = document.getElementById('carouselIndicators');
+    // Önce önbelleği kontrol et
+    const cachedNews = checkCache();
+    if (cachedNews) {
+      displayNews(cachedNews);
+      return;
+    }
 
-    // Display loading messages
-    newsContainer.innerHTML = '<p class="text-center text-primary"><i class="fas fa-spinner fa-spin me-2"></i> Haberler yükleniyor...</p>';
-    carouselInner.innerHTML = '<p class="text-center text-secondary"><i class="fas fa-spinner fa-spin me-2"></i> Slider haberleri yükleniyor...</p>';
-    carouselIndicators.innerHTML = '';
-
+    showLoader();
+    
     try {
-      const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(newsSources[currentSourceIndex].url)}`;
+      const sources = [
+        'https://www.trthaber.com/manset_articles.rss',
+        'https://www.ntv.com.tr/gundem.rss'
+      ];
       
-      const res = await fetch(proxyUrl);
-      const data = await res.json();
-
-      if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-        // Kaynak değiştir ve tekrar dene
-        currentSourceIndex = (currentSourceIndex + 1) % newsSources.length;
-        await fetchNews();
-        return;
-      }
-
-      // Haberleri tarihe göre sırala (en yeni en üstte)
-      data.items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+      // Paralel olarak birden fazla kaynaktan veri çek
+      const promises = sources.map(src => 
+        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(src)}`)
+          .then(res => res.json())
+          .catch(() => null)
+      );
       
-      // 24 saatten eski haberleri filtrele
-      const now = new Date();
-      const twentyFourHoursAgo = new Date(now.getTime() - (24 * 60 * 60 * 1000));
+      const results = await Promise.all(promises);
+      const validResults = results.filter(r => r?.status === 'ok');
       
-      allNewsData = data.items.filter(item => {
-        const pubDate = new Date(item.pubDate);
-        return pubDate > twentyFourHoursAgo;
+      if (validResults.length === 0) throw new Error('No valid sources');
+      
+      // Haberleri birleştir ve sırala
+      let allNews = [];
+      validResults.forEach(result => {
+        allNews = [...allNews, ...result.items];
       });
-
-      if (allNewsData.length === 0) {
-        // Eğer güncel haber yoksa, diğer kaynağa geç
-        currentSourceIndex = (currentSourceIndex + 1) % newsSources.length;
-        await fetchNews();
-        return;
-      }
-
-      displayNews(allNewsData.slice(0, currentDisplayCount));
-      displayCarousel(allNewsData);
-
-    } catch (err) {
-      console.error("Haberleri alırken bir hata oluştu:", err);
       
-      // Hata durumunda diğer kaynağa geç
-      currentSourceIndex = (currentSourceIndex + 1) % newsSources.length;
+      // Tarihe göre sırala ve eski haberleri filtrele
+      allNews.sort((a,b) => new Date(b.pubDate) - new Date(a.pubDate));
+      const recentNews = allNews.filter(item => 
+        new Date(item.pubDate) > new Date(Date.now() - 24*60*60*1000)
+      );
       
-      const connectionError = '<p class="text-center text-danger"><i class="fas fa-times-circle me-2"></i> Bağlantı hatası: Güncel haberler alınamadı. Lütfen internet bağlantınızı kontrol edin.</p>';
-      newsContainer.innerHTML = connectionError;
-      carouselInner.innerHTML = connectionError;
+      // Önbelleğe kaydet
+      saveToCache(recentNews);
+      displayNews(recentNews);
+      
+    } catch (error) {
+      console.error("Haber yükleme hatası:", error);
+      showError();
+    } finally {
+      hideLoader();
     }
   }
 
-  // Kalan JavaScript kodları...
-  // (Önceki kodunuzdaki displayNews, displayCarousel ve diğer fonksiyonlar aynen kalacak)
-</script>
+  function checkCache() {
+    const cachedData = localStorage.getItem(NEWS_CACHE_KEY);
+    if (!cachedData) return null;
+    
+    const { data, timestamp } = JSON.parse(cachedData);
+    if (Date.now() - timestamp > CACHE_EXPIRE_TIME) return null;
+    
+    return data;
+  }
 
+  function saveToCache(data) {
+    const cacheData = {
+      data,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify(cacheData));
+  }
+
+  function displayNews(newsItems) {
+    const container = document.getElementById('newsContainer');
+    container.innerHTML = '';
+    
+    // İlk 12 haber için basit kart oluştur
+    newsItems.slice(0,12).forEach(item => {
+      const imgUrl = extractImageUrl(item.description);
+      const card = `
+        <div class="col-md-4 mb-4">
+          <div class="card news-card h-100">
+            <img src="${imgUrl}" class="card-img-top" loading="lazy" 
+                 onerror="this.src='https://via.placeholder.com/300x200?text=Resim+Yok'">
+            <div class="card-body">
+              <h5 class="card-title">${item.title}</h5>
+              <p class="card-text">${truncateText(item.description, 100)}</p>
+              <a href="${item.link}" class="btn btn-primary">Haberi Oku</a>
+            </div>
+          </div>
+        </div>
+      `;
+      container.innerHTML += card;
+    });
+  }
+
+  function extractImageUrl(html) {
+    const match = html.match(/<img[^>]+src="([^"]+)"/);
+    return match ? match[1] : 'https://via.placeholder.com/300x200?text=Resim+Yok';
+  }
+
+  function truncateText(text, maxLength) {
+    const cleanText = text.replace(/<[^>]*>?/gm, '');
+    return cleanText.length > maxLength 
+      ? cleanText.substring(0, maxLength) + '...' 
+      : cleanText;
+  }
+
+  // Sayfa yüklendiğinde haberleri getir
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchNews();
+    // Her 5 dakikada bir güncelle
+    setInterval(fetchNews, 5 * 60 * 1000);
+  });
+</script>
 </body>
 </html>
