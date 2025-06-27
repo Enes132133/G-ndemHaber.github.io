@@ -377,51 +377,169 @@
       transform: translateY(-3px);
     }
 
-    /* Newsletter Section */
-    .newsletter-section {
+    /* Döviz ve Spor Bölümü */
+    .exchange-sports-section {
       background-color: var(--primary-color);
       color: white;
-      padding: 50px 0;
+      padding: 40px 0;
       margin: 60px 0;
     }
 
-    .newsletter-container {
-      max-width: 800px;
+    .exchange-sports-container {
+      max-width: 1200px;
       margin: 0 auto;
-      text-align: center;
-    }
-
-    .newsletter-form {
       display: flex;
-      max-width: 500px;
-      margin: 20px auto 0;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
 
-    .newsletter-form input {
-      flex-grow: 1;
-      padding: 12px 15px;
-      border: none;
-      border-radius: 50px 0 0 50px;
-      font-size: 1rem;
+    .exchange-section, .sports-section {
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      margin: 10px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 10px;
     }
 
-    .newsletter-form button {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      border: none;
-      padding: 0 25px;
-      border-radius: 0 50px 50px 0;
-      font-weight: 600;
-      cursor: pointer;
+    .exchange-section h3, .sports-section h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+    }
+
+    .exchange-rates, .sports-results {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .exchange-rate, .sports-result {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 5px;
       transition: all 0.3s ease;
     }
 
-    .newsletter-form button:hover {
-      background-color: #ffd700;
+    .exchange-rate:hover, .sports-result:hover {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateX(5px);
     }
 
-    /* Kalan CSS kodu... */
-    /* ... (Önceki CSS kodunuzun geri kalanı aynen kalacak) ... */
+    .currency, .teams {
+      font-weight: 600;
+    }
+
+    .rate, .score {
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+
+    .change {
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .change.up {
+      color: #28a745;
+    }
+
+    .change.down {
+      color: #dc3545;
+    }
+
+    /* About Modal */
+    .modal-content {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .modal-header {
+      border-bottom-color: var(--border-color);
+    }
+
+    .modal-footer {
+      border-top-color: var(--border-color);
+    }
+
+    /* Back to top button */
+    #backToTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: var(--primary-color);
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    #backToTopBtn:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Kategoriler */
+    .category-pill {
+      display: inline-block;
+      padding: 8px 20px;
+      margin: 5px;
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      border-radius: 50px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    body.dark-mode .category-pill {
+      background-color: #333;
+      color: #eee;
+    }
+
+    .category-pill:hover, .category-pill.active {
+      background-color: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Arama Çubuğu */
+    .search-bar {
+      margin: 30px 0;
+    }
+
+    .search-bar .input-group {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      border: none;
+      padding: 12px 20px;
+    }
+
+    .search-bar input:focus {
+      box-shadow: none;
+    }
+
+    .search-bar button {
+      padding: 0 25px;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -445,7 +563,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#">Ana Sayfa</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#home">Ana Sayfa</a></li>
         <li class="nav-item"><a class="nav-link" href="#slider">Öne Çıkanlar</a></li>
         <li class="nav-item"><a class="nav-link" href="#haberler">Son Haberler</a></li>
         <li class="nav-item"><a class="nav-link" href="#kategoriler">Kategoriler</a></li>
@@ -460,7 +578,7 @@
   </div>
 </nav>
 
-<header class="hero">
+<header id="home" class="hero">
   <div class="hero-content">
     <h1>Gündemi Yakından Takip Et</h1>
     <p>Türkiye ve dünyadan en güncel haberler, son dakika gelişmeleri, analizler ve özel içerikler her gün burada!</p>
@@ -529,20 +647,97 @@
   </div>
 </section>
 
-<!-- Newsletter Section -->
-<section class="newsletter-section">
-  <div class="newsletter-container">
-    <h3>Haber Bültenimize Abone Olun</h3>
-    <p>Güncel haberler e-posta adresinize gelsin</p>
-    <form class="newsletter-form">
-      <input type="email" placeholder="E-posta adresiniz" required>
-      <button type="submit">Abone Ol</button>
-    </form>
+<!-- Döviz ve Spor Bölümü -->
+<section class="exchange-sports-section">
+  <div class="exchange-sports-container">
+    <div class="exchange-section">
+      <h3><i class="fas fa-chart-line me-2"></i> Döviz Kurları</h3>
+      <div class="exchange-rates" id="exchangeRates">
+        <div class="exchange-rate">
+          <span class="currency">USD/TRY</span>
+          <span class="rate">32.45</span>
+          <span class="change up"><i class="fas fa-arrow-up me-1"></i>0.12%</span>
+        </div>
+        <div class="exchange-rate">
+          <span class="currency">EUR/TRY</span>
+          <span class="rate">35.18</span>
+          <span class="change down"><i class="fas fa-arrow-down me-1"></i>0.07%</span>
+        </div>
+        <div class="exchange-rate">
+          <span class="currency">GBP/TRY</span>
+          <span class="rate">41.23</span>
+          <span class="change up"><i class="fas fa-arrow-up me-1"></i>0.21%</span>
+        </div>
+        <div class="exchange-rate">
+          <span class="currency">ALTIN/TRY</span>
+          <span class="rate">2,450.75</span>
+          <span class="change up"><i class="fas fa-arrow-up me-1"></i>0.45%</span>
+        </div>
+      </div>
+    </div>
+    <div class="sports-section">
+      <h3><i class="fas fa-futbol me-2"></i> Spor Sonuçları</h3>
+      <div class="sports-results" id="sportsResults">
+        <div class="sports-result">
+          <span class="teams">Fenerbahçe - Galatasaray</span>
+          <span class="score">2-1</span>
+        </div>
+        <div class="sports-result">
+          <span class="teams">Beşiktaş - Trabzonspor</span>
+          <span class="score">1-1</span>
+        </div>
+        <div class="sports-result">
+          <span class="teams">Başakşehir - Adana Demir</span>
+          <span class="score">3-0</span>
+        </div>
+        <div class="sports-result">
+          <span class="teams">Kayserispor - Antalyaspor</span>
+          <span class="score">2-2</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Kalan HTML kodu aynı şekilde devam ediyor... -->
-<!-- ... (Önceki HTML kodunuzun geri kalanı aynen kalacak) ... -->
+<!-- Hakkımızda Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aboutModalLabel">Hakkımızda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" alt="GündemLive Logo" style="height: 80px;" class="mb-3">
+          <h3>GündemLive</h3>
+          <p class="text-muted">Türkiye'nin en güncel haber platformu</p>
+        </div>
+        <p>GündemLive, 2023 yılında kurulmuş olup, Türkiye ve dünyadan en güncel haberleri tarafsız ve hızlı bir şekilde okurlarına ulaştırmayı hedeflemektedir.</p>
+        <p>Uzman gazeteci kadromuz ve geniş muhabir ağımızla, güvenilir habercilik ilkelerinden ödün vermeden, doğru ve objektif haber yayıncılığı yapıyoruz.</p>
+        
+        <h5 class="mt-4">Misyonumuz</h5>
+        <p>Toplumu doğru ve güvenilir bilgiyle buluşturmak, demokratik toplumun gelişimine katkı sağlamak.</p>
+        
+        <h5 class="mt-4">Vizyonumuz</h5>
+        <p>Türkiye'nin en çok tercih edilen, güvenilir ve yenilikçi haber platformu olmak.</p>
+        
+        <h5 class="mt-4">İletişim</h5>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-envelope me-2"></i> info@gundemlive.com</li>
+          <li><i class="fas fa-phone me-2"></i> 0212 123 45 67</li>
+          <li><i class="fas fa-map-marker-alt me-2"></i> İstanbul, Türkiye</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back to top button -->
+<button onclick="topFunction()" id="backToTopBtn" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -561,6 +756,43 @@
   // Rastgele breaking news seç
   document.getElementById('breakingNewsText').textContent = 
     breakingNewsTexts[Math.floor(Math.random() * breakingNewsTexts.length)];
+
+  // Döviz kurlarını güncelle
+  function updateExchangeRates() {
+    const currencies = ['USD/TRY', 'EUR/TRY', 'GBP/TRY', 'ALTIN/TRY'];
+    const rates = document.querySelectorAll('.exchange-rate');
+    
+    rates.forEach((rate, index) => {
+      const baseValue = [32.45, 35.18, 41.23, 2450.75][index];
+      const change = (Math.random() * 0.5 - 0.25).toFixed(2);
+      const newValue = (parseFloat(baseValue) + parseFloat(change)).toFixed(2);
+      const changePercent = (Math.random() * 0.5).toFixed(2);
+      const isUp = Math.random() > 0.5;
+      
+      rate.querySelector('.currency').textContent = currencies[index];
+      rate.querySelector('.rate').textContent = newValue;
+      
+      const changeElement = rate.querySelector('.change');
+      changeElement.innerHTML = `<i class="fas fa-arrow-${isUp ? 'up' : 'down'} me-1"></i>${changePercent}%`;
+      changeElement.className = `change ${isUp ? 'up' : 'down'}`;
+    });
+  }
+
+  // Spor sonuçlarını güncelle
+  function updateSportsResults() {
+    const matches = [
+      { teams: 'Fenerbahçe - Galatasaray', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` },
+      { teams: 'Beşiktaş - Trabzonspor', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` },
+      { teams: 'Başakşehir - Adana Demir', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 2)}` },
+      { teams: 'Kayserispor - Antalyaspor', score: `${Math.floor(Math.random() * 3)}-${Math.floor(Math.random() * 3)}` }
+    ];
+    
+    const results = document.querySelectorAll('.sports-result');
+    matches.forEach((match, index) => {
+      results[index].querySelector('.teams').textContent = match.teams;
+      results[index].querySelector('.score').textContent = match.score;
+    });
+  }
 
   async function fetchNews() {
     const newsContainer = document.getElementById('newsContainer');
@@ -808,18 +1040,16 @@
       }
   });
 
-  // Newsletter form submission
-  document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = this.querySelector('input').value;
-    alert(`Aboneliğiniz için teşekkürler! ${email} adresine onay maili gönderildi.`);
-    this.querySelector('input').value = '';
-  });
-
   // Fetch news on page load and set interval for refresh
   window.onload = () => {
     fetchNews();
+    updateExchangeRates();
+    updateSportsResults();
+    
+    // Döviz ve spor sonuçlarını her 30 saniyede bir güncelle
     setInterval(fetchNews, 60000 * 5); // Refresh news every 5 minutes
+    setInterval(updateExchangeRates, 30000); // Refresh exchange rates every 30 seconds
+    setInterval(updateSportsResults, 30000); // Refresh sports results every 30 seconds
   };
 </script>
 
