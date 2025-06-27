@@ -22,9 +22,9 @@
 
   <style>
     :root {
-      --primary-color: #003366;
-      --secondary-color: #0066cc;
-      --accent-color: #ffcc00;
+      --primary-color: #1a3e72; /* Daha koyu mavi ton */
+      --secondary-color: #2a56a5;
+      --accent-color: #ff5722; /* Turuncu aksan rengi */
       --dark-color: #1a1a1a;
       --light-color: #f8f9fa;
       --text-color: #333;
@@ -35,9 +35,9 @@
     }
 
     body.dark-mode {
-      --primary-color: #004080;
-      --secondary-color: #0077e6;
-      --accent-color: #ffd700;
+      --primary-color: #0d2b57;
+      --secondary-color: #1a4b9c;
+      --accent-color: #ff7043;
       --dark-color: #121212;
       --light-color: #1e1e1e;
       --text-color: #e0e0e0;
@@ -81,7 +81,7 @@
     .navbar-brand img {
       height: 32px;
       margin-right: 10px;
-      filter: drop-shadow(0 0 2px rgba(255, 204, 0, 0.7));
+      filter: drop-shadow(0 0 2px rgba(255, 87, 34, 0.7));
       transition: transform 0.3s ease;
     }
 
@@ -377,51 +377,265 @@
       transform: translateY(-3px);
     }
 
-    /* Newsletter Section */
-    .newsletter-section {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 50px 0;
-      margin: 60px 0;
+    /* Search Bar */
+    .search-bar {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 15px;
     }
 
-    .newsletter-container {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .newsletter-form {
-      display: flex;
-      max-width: 500px;
-      margin: 20px auto 0;
-    }
-
-    .newsletter-form input {
-      flex-grow: 1;
-      padding: 12px 15px;
-      border: none;
+    .search-bar .form-control {
       border-radius: 50px 0 0 50px;
-      font-size: 1rem;
+      padding: 12px 20px;
+      border: 1px solid var(--border-color);
+      border-right: none;
+      background-color: var(--card-bg);
+      color: var(--text-color);
     }
 
-    .newsletter-form button {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      border: none;
-      padding: 0 25px;
+    .search-bar .btn {
       border-radius: 0 50px 50px 0;
+      padding: 12px 20px;
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      color: var(--dark-color);
       font-weight: 600;
+    }
+
+    .search-bar .btn:hover {
+      background-color: #e64a19;
+      border-color: #e64a19;
+    }
+
+    /* Categories Section */
+    .categories-section {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding: 0 15px;
+    }
+
+    .category-pill {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 8px 20px;
+      margin: 5px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .newsletter-form button:hover {
-      background-color: #ffd700;
+    .category-pill:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+      color: var(--white);
     }
 
-    /* Kalan CSS kodu... */
-    /* ... (Önceki CSS kodunuzun geri kalanı aynen kalacak) ... */
+    body.dark-mode .category-pill {
+      background-color: var(--dark-color);
+      color: var(--text-color);
+    }
+
+    body.dark-mode .category-pill:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+
+    .category-pill.active {
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+    }
+
+    .social-icons a {
+      color: var(--white);
+      font-size: 1.5rem;
+      margin: 0 12px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-color);
+      transform: scale(1.2);
+    }
+
+    /* Back-to-top button */
+    #backToTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    #backToTopBtn:hover {
+      background-color: var(--white);
+      transform: translateY(-5px);
+    }
+
+    /* Contact Info */
+    .contact-info {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    .contact-info a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      #newsCarousel .carousel-item {
+        height: 400px;
+      }
+      
+      #newsCarousel .carousel-caption h5 {
+        font-size: 1.8rem;
+      }
+      
+      #newsCarousel .carousel-caption p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      #newsCarousel .carousel-item {
+        height: 350px;
+      }
+      
+      #newsCarousel .carousel-caption {
+        padding: 20px;
+      }
+      
+      #newsCarousel .carousel-caption h5 {
+        font-size: 1.5rem;
+      }
+      
+      #newsCarousel .carousel-caption p {
+        -webkit-line-clamp: 2;
+      }
+      
+      .news-card .card-img-top {
+        height: 180px;
+      }
+      
+      .navbar-brand {
+        font-size: 1.3rem;
+      }
+      
+      .navbar-brand img {
+        height: 28px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 50px 15px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      #newsCarousel .carousel-item {
+        height: 300px;
+      }
+      
+      #newsCarousel .carousel-caption {
+        padding: 15px;
+      }
+      
+      #newsCarousel .carousel-caption h5 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+      
+      #newsCarousel .carousel-caption p {
+        display: none;
+      }
+      
+      .breaking-news span {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+      
+      .search-bar .form-control {
+        padding: 10px 15px;
+      }
+      
+      .search-bar .btn {
+        padding: 10px 15px;
+      }
+      
+      .category-pill {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -449,7 +663,6 @@
         <li class="nav-item"><a class="nav-link" href="#slider">Öne Çıkanlar</a></li>
         <li class="nav-item"><a class="nav-link" href="#haberler">Son Haberler</a></li>
         <li class="nav-item"><a class="nav-link" href="#kategoriler">Kategoriler</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Hakkımızda</a></li>
         <li class="nav-item">
           <button id="darkModeToggle" class="btn btn-link nav-link" aria-label="Karanlık Mod">
             <i class="fas fa-moon"></i>
@@ -529,25 +742,59 @@
   </div>
 </section>
 
-<!-- Newsletter Section -->
-<section class="newsletter-section">
-  <div class="newsletter-container">
-    <h3>Haber Bültenimize Abone Olun</h3>
-    <p>Güncel haberler e-posta adresinize gelsin</p>
-    <form class="newsletter-form">
-      <input type="email" placeholder="E-posta adresiniz" required>
-      <button type="submit">Abone Ol</button>
-    </form>
+<footer id="iletisim">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <h5>GündemLive</h5>
+        <p>Tarafsız ve güvenilir habercilik anlayışıyla Türkiye ve dünyadan en güncel gelişmeleri sizlere sunuyoruz.</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/GundemLive" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/GundemLive" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/GundemLive" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Hızlı Bağlantılar</h5>
+        <ul class="list-unstyled">
+          <li><a href="#">Ana Sayfa</a></li>
+          <li><a href="#haberler">Haberler</a></li>
+          <li><a href="#kategoriler">Kategoriler</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Gizlilik Politikası</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">Künye</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>İletişim</h5>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope me-2"></i> <a href="mailto:simsekenes762@gmail.com">simsekenes762@gmail.com</a></p>
+          <p><i class="fas fa-phone me-2"></i> <a href="tel:+905512769313">+90 551 276 9313</a></p>
+          <p><i class="fas fa-map-marker-alt me-2"></i> İstanbul, Türkiye</p>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-4 mb-3">
+    <p class="mb-0">&copy; 2025 GündemLive | Tüm Hakları Saklıdır.</p>
   </div>
-</section>
+</footer>
 
-<!-- Kalan HTML kodu aynı şekilde devam ediyor... -->
-<!-- ... (Önceki HTML kodunuzun geri kalanı aynen kalacak) ... -->
+<button onclick="topFunction()" id="backToTopBtn" title="Yukarı Çık"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Kalan modal ve diğer HTML kodları... -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   let allNewsData = []; // Tüm haberleri saklamak için global değişken
   let currentDisplayCount = 12; // Başlangıçta gösterilecek haber sayısı
+  let newsSources = [
+    { name: 'TRT Haber', url: 'https://www.trthaber.com/manset_articles.rss' },
+    { name: 'NTV', url: 'https://www.ntv.com.tr/gundem.rss' },
+    { name: 'Hürriyet', url: 'https://www.hurriyet.com.tr/rss/gundem' },
+    { name: 'Sabah', url: 'https://www.sabah.com.tr/rss/gundem.xml' },
+    { name: 'Fotomaç', url: 'https://www.fotomac.com.tr/rss' }
+  ];
+  let currentSourceIndex = 0;
 
   // Breaking News Text
   const breakingNewsTexts = [
@@ -573,254 +820,54 @@
     carouselIndicators.innerHTML = '';
 
     try {
-      const rssUrl = 'https://www.trthaber.com/manset_articles.rss';
-      const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
+      const proxyUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(newsSources[currentSourceIndex].url)}`;
+      
       const res = await fetch(proxyUrl);
       const data = await res.json();
 
       if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-        const errorMessage = '<p class="text-center text-danger"><i class="fas fa-exclamation-triangle me-2"></i> Haberler alınamadı. Lütfen daha sonra tekrar deneyin.</p>';
-        newsContainer.innerHTML = errorMessage;
-        carouselInner.innerHTML = errorMessage;
+        // Kaynak değiştir ve tekrar dene
+        currentSourceIndex = (currentSourceIndex + 1) % newsSources.length;
+        await fetchNews();
         return;
       }
 
-      allNewsData = data.items;
+      // Haberleri tarihe göre sırala (en yeni en üstte)
+      data.items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+      
+      // 24 saatten eski haberleri filtrele
+      const now = new Date();
+      const twentyFourHoursAgo = new Date(now.getTime() - (24 * 60 * 60 * 1000));
+      
+      allNewsData = data.items.filter(item => {
+        const pubDate = new Date(item.pubDate);
+        return pubDate > twentyFourHoursAgo;
+      });
+
+      if (allNewsData.length === 0) {
+        // Eğer güncel haber yoksa, diğer kaynağa geç
+        currentSourceIndex = (currentSourceIndex + 1) % newsSources.length;
+        await fetchNews();
+        return;
+      }
+
       displayNews(allNewsData.slice(0, currentDisplayCount));
       displayCarousel(allNewsData);
 
     } catch (err) {
       console.error("Haberleri alırken bir hata oluştu:", err);
+      
+      // Hata durumunda diğer kaynağa geç
+      currentSourceIndex = (currentSourceIndex + 1) % newsSources.length;
+      
       const connectionError = '<p class="text-center text-danger"><i class="fas fa-times-circle me-2"></i> Bağlantı hatası: Güncel haberler alınamadı. Lütfen internet bağlantınızı kontrol edin.</p>';
       newsContainer.innerHTML = connectionError;
       carouselInner.innerHTML = connectionError;
     }
   }
 
-  function displayNews(newsItems, searchTerm = '', filterCategory = 'all') {
-    const newsContainer = document.getElementById('newsContainer');
-    
-    // Eğer yeni bir arama/filtreleme yapılıyorsa, tüm haberleri temizle
-    if (searchTerm || filterCategory !== 'all') {
-      newsContainer.innerHTML = '';
-      currentDisplayCount = 12; // Reset display count when filtering
-    }
-
-    let filteredNews = newsItems;
-
-    // Kategoriye göre filtreleme
-    if (filterCategory !== 'all') {
-        filteredNews = filteredNews.filter(item => {
-            const titleLower = item.title.toLowerCase();
-            const descriptionLower = (item.description || '').toLowerCase();
-            return titleLower.includes(filterCategory) || descriptionLower.includes(filterCategory);
-        });
-    }
-
-    // Arama terimine göre filtreleme
-    if (searchTerm) {
-        const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        filteredNews = filteredNews.filter(item => {
-            const titleLower = item.title.toLowerCase();
-            const descriptionLower = (item.description || '').toLowerCase();
-            return titleLower.includes(lowerCaseSearchTerm) || descriptionLower.includes(lowerCaseSearchTerm);
-        });
-    }
-
-    if (filteredNews.length === 0) {
-      newsContainer.innerHTML = '<p class="text-center text-warning"><i class="fas fa-info-circle me-2"></i> Aradığınız kriterlere uygun haber bulunamadı.</p>';
-      document.getElementById('loadMoreBtn').style.display = 'none';
-      return;
-    }
-
-    filteredNews.forEach((item, index) => {
-      const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-      let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
-      if (imageUrl && !imageUrl.startsWith('http')) {
-          imageUrl = 'https://via.placeholder.com/600x400?text=Haber+Resmi+Yok';
-      }
-      
-      // Kategoriyi belirle (basit bir yaklaşım)
-      let category = 'Gündem';
-      const titleLower = item.title.toLowerCase();
-      if (titleLower.includes('spor')) category = 'Spor';
-      else if (titleLower.includes('ekonomi') || titleLower.includes('dolar') || titleLower.includes('borsa')) category = 'Ekonomi';
-      else if (titleLower.includes('teknoloji') || titleLower.includes('yapay zeka') || titleLower.includes('apple') || titleLower.includes('samsung')) category = 'Teknoloji';
-      else if (titleLower.includes('sağlık') || titleLower.includes('hastane') || titleLower.includes('doktor')) category = 'Sağlık';
-      
-      const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-      const shortDescription = cleanDescription.length > 180 ? cleanDescription.substring(0, 180) + '...' : cleanDescription;
-      
-      // Tarih formatlama
-      const pubDate = new Date(item.pubDate);
-      const formattedDate = pubDate.toLocaleDateString('tr-TR', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-
-      const newsHTML = `
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card news-card h-100">
-            <img src="${imageUrl}" class="card-img-top" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Resim+Yüklenemedi';">
-            <div class="card-body">
-              <span class="category-badge">${category}</span>
-              <h5 class="card-title">${item.title}</h5>
-              <p class="card-text">${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
-              <div class="news-meta">
-                <i class="far fa-calendar-alt"></i> ${formattedDate}
-              </div>
-              <a href="${item.link}" class="btn btn-primary mt-auto" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
-            </div>
-          </div>
-        </div>
-      `;
-      newsContainer.innerHTML += newsHTML;
-    });
-
-    // Daha fazla yükle butonunu kontrol et
-    if (filteredNews.length <= currentDisplayCount || (searchTerm || filterCategory !== 'all')) {
-      document.getElementById('loadMoreBtn').style.display = 'none';
-    } else {
-      document.getElementById('loadMoreBtn').style.display = 'inline-block';
-    }
-  }
-
-  function displayCarousel(newsItems) {
-    const carouselInner = document.getElementById('carouselInner');
-    const carouselIndicators = document.getElementById('carouselIndicators');
-    carouselInner.innerHTML = '';
-    carouselIndicators.innerHTML = '';
-
-    const carouselItems = newsItems.slice(0, 5);
-
-    if (carouselItems.length === 0) {
-      carouselInner.innerHTML = '<p class="text-center text-warning"><i class="fas fa-info-circle me-2"></i> Slider için haber bulunmamaktadır.</p>';
-      return;
-    }
-
-    carouselItems.forEach((item, index) => {
-      const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-      let imageUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok';
-      if (imageUrl && !imageUrl.startsWith('http')) {
-          imageUrl = 'https://via.placeholder.com/1200x600?text=Haber+Resmi+Yok';
-      }
-
-      const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').trim();
-      const shortDescription = cleanDescription.length > 200 ? cleanDescription.substring(0, 200) + '...' : cleanDescription;
-
-      const carouselItemHTML = `
-        <div class="carousel-item ${index === 0 ? 'active' : ''}">
-          <img src="${imageUrl}" class="d-block w-100" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/1200x600?text=Resim+Yüklenemedi';">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>${item.title}</h5>
-            <p>${shortDescription || 'Bu haber için kısa açıklama bulunmamaktadır.'}</p>
-            <a href="${item.link}" class="btn btn-warning" target="_blank" rel="noopener noreferrer">Haberi Oku <i class="fas fa-arrow-right ms-1"></i></a>
-          </div>
-        </div>
-      `;
-      carouselInner.innerHTML += carouselItemHTML;
-
-      const indicatorButton = `
-        <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="${index}" class="${index === 0 ? 'active' : ''}" aria-current="${index === 0 ? 'true' : 'false'}" aria-label="Slide ${index + 1}"></button>
-      `;
-      carouselIndicators.innerHTML += indicatorButton;
-    });
-  }
-
-  // Daha fazla haber yükleme fonksiyonu
-  document.getElementById('loadMoreBtn').addEventListener('click', function() {
-    currentDisplayCount += 6;
-    displayNews(allNewsData.slice(0, currentDisplayCount));
-  });
-
-  // Back-to-top button functionality
-  const backToTopBtn = document.getElementById("backToTopBtn");
-
-  window.onscroll = function() { scrollFunction() };
-
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      backToTopBtn.style.display = "block";
-    } else {
-      backToTopBtn.style.display = "none";
-    }
-  }
-
-  function topFunction() {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }
-
-  // --- Dark Mode Functionality ---
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const body = document.body;
-
-  // Check for saved dark mode preference on load
-  const savedDarkMode = localStorage.getItem('darkMode');
-  if (savedDarkMode === 'enabled') {
-    body.classList.add('dark-mode');
-    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
-
-  // Toggle dark mode on button click
-  darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('darkMode', 'enabled');
-      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-      localStorage.setItem('darkMode', 'disabled');
-      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    }
-  });
-
-  // --- Search Functionality ---
-  const newsSearchInput = document.getElementById('newsSearchInput');
-  const newsSearchButton = document.getElementById('newsSearchButton');
-
-  function performSearchAndFilter() {
-      const searchTerm = newsSearchInput.value.trim();
-      const activeCategory = document.querySelector('.category-pill.active')?.dataset.filter || 'all';
-      displayNews(allNewsData, searchTerm, activeCategory);
-  }
-
-  newsSearchButton.addEventListener('click', performSearchAndFilter);
-  newsSearchInput.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-          performSearchAndFilter();
-      }
-  });
-
-  // --- Category Filtering Functionality ---
-  const categoryPills = document.getElementById('categoryPills');
-  categoryPills.addEventListener('click', (event) => {
-      if (event.target.classList.contains('category-pill')) {
-          event.preventDefault();
-          document.querySelectorAll('.category-pill').forEach(pill => {
-              pill.classList.remove('active');
-          });
-          event.target.classList.add('active');
-          const filterCategory = event.target.dataset.filter;
-          const searchTerm = newsSearchInput.value.trim();
-          displayNews(allNewsData, searchTerm, filterCategory);
-      }
-  });
-
-  // Newsletter form submission
-  document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email = this.querySelector('input').value;
-    alert(`Aboneliğiniz için teşekkürler! ${email} adresine onay maili gönderildi.`);
-    this.querySelector('input').value = '';
-  });
-
-  // Fetch news on page load and set interval for refresh
-  window.onload = () => {
-    fetchNews();
-    setInterval(fetchNews, 60000 * 5); // Refresh news every 5 minutes
-  };
+  // Kalan JavaScript kodları...
+  // (Önceki kodunuzdaki displayNews, displayCarousel ve diğer fonksiyonlar aynen kalacak)
 </script>
 
 </body>
